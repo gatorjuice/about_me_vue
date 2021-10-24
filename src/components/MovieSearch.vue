@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <form @submit.prevent="processForm">
-      <div class="form-group">
-        <label for="movieTitle">Movie Title</label>
+    <form class="form-inline" @submit.prevent="processForm">
+      <div class="form-group mx-sm-3 mb-2">
+        <label class="sr-only" for="movieTitle">Movie Title</label>
         <input
           v-model="this.form.movieTitle"
           type="text"
@@ -12,39 +12,30 @@
           placeholder="Enter Movie Title"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary mb-2">Submit</button>
     </form>
-
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Plot</th>
-          <th scope="col">$</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="movie in this.movies" v-bind:key="movie">
-          <td>{{ movie.title }}</td>
-          <td>{{ movie.summary }}</td>
-          <td>{{ movie.performance }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <ul id="array-rendering">
-      <li v-for="movie in this.movies" v-bind:key="movie">
-        {{ movie }}
-      </li>
-    </ul>
+  </div>
+  <div class="container">
+    <div class="row">
+      <Movie
+        v-bind:movie="movie"
+        v-for="movie in this.movies"
+        v-bind:key="movie"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Movie from "@/components/Movie.vue";
+
 axios.defaults.baseURL = process.env.VUE_APP_ABOUT_ME_API_ENDPOINT;
 
 export default {
+  components: {
+    Movie,
+  },
   name: "MovieSearch",
   data() {
     return {
