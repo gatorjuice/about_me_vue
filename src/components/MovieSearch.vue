@@ -17,11 +17,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <Movie
-        v-bind:movie="movie"
-        v-for="movie in this.movies"
-        v-bind:key="movie"
-      />
+      <movie v-for="movie in this.movies" :key="movie.title" :movie="movie" />
     </div>
   </div>
 </template>
