@@ -1,7 +1,7 @@
 <template>
   <div class="container col-md-6">
     <div class="card mb-3">
-      <div class="row no-gutters">
+      <div class="row g-0">
         <div class="col-md-4">
           <img
             :src="movie.image"
@@ -13,17 +13,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
             <p>{{ movie.summary }}</p>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-toggle="modal"
-              @click="handleLog"
-              :data-target="`#${movie.title}`"
-            >
-              Show Details
-            </button>
-
-            <MovieModal :movie="movie" />
+            <MovieModal :movie="movie" :modalId="modalId" />
           </div>
         </div>
       </div>
@@ -32,13 +22,13 @@
 </template>
 
 <script>
-import MovieModal from '@/components/MovieModal.vue';
+import MovieModal from "@/components/MovieModal.vue";
 
 export default {
   components: {
     MovieModal,
   },
-  name: 'MovieCard',
+  name: "MovieCard",
   props: {
     movie: {
       type: Object,
@@ -47,6 +37,9 @@ export default {
     handleLog: {
       type: Function,
       require: true,
+    },
+    modalId: {
+      type: String,
     },
   },
 };
