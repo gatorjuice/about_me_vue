@@ -37,9 +37,9 @@
 </template>
 
 <script>
-import axios from "axios";
-import { Circle8 } from "vue-loading-spinner";
-import MovieCard from "@/components/MovieCard.vue";
+import axios from 'axios';
+import { Circle8 } from 'vue-loading-spinner';
+import MovieCard from '@/components/MovieCard.vue';
 
 axios.defaults.baseURL = process.env.VUE_APP_ABOUT_ME_API_ENDPOINT;
 
@@ -48,12 +48,12 @@ export default {
     MovieCard,
     Circle8,
   },
-  name: "MovieSearch",
+  name: 'MovieSearch',
   data() {
     return {
       loading: false,
       form: {
-        movieTitle: "",
+        movieTitle: '',
       },
       movies: Array,
     };
