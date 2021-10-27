@@ -1,11 +1,12 @@
 <template>
-  <div class="movies">
-    <MovieSearch />
+  <div>
+    <div class="movies">
+      <MovieSearch />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import MovieSearch from "@/components/MovieSearch.vue";
 
 export default {
@@ -15,3 +16,4 @@ export default {
   },
 };
 </script>
+<style scoped></style>
