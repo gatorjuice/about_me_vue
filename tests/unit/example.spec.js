@@ -1,12 +1,12 @@
 import { shallowMount } from "@vue/test-utils";
-import Movie from "@/components/Movie.vue";
+import MovieCard from "@/components/MovieCard.vue";
 
-describe("Movie.vue", () => {
+describe("MovieCard.vue", () => {
   it("renders props.movie when passed", () => {
     const movie = { image: "image_link" };
-    const wrapper = shallowMount(Movie, {
+    const wrapper = shallowMount(MovieCard, {
       props: { movie },
     });
-    expect(wrapper.text()).toMatch("Last updated 3 mins ago");
+    expect(wrapper.text()).toMatch("Show Details");
   });
 });

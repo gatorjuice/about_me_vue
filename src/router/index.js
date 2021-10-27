@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Movies from "../views/Movies.vue";
+import Maps from "../views/Maps.vue";
 
 const routes = [
   {
@@ -12,10 +13,15 @@ const routes = [
     name: "Movies",
     component: Movies,
   },
+  {
+    path: "/maps",
+    name: "Maps",
+    component: Maps,
+  },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.VUE_APP_BASE_URL),
   routes,
 });
 

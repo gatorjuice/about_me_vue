@@ -17,6 +17,7 @@
               type="button"
               class="btn btn-primary"
               data-toggle="modal"
+              @click="handleLog"
               :data-target="`#${movie.title}`"
             >
               Show Details
@@ -32,12 +33,22 @@
 
 <script>
 import MovieModal from "@/components/MovieModal.vue";
+
 export default {
   components: {
     MovieModal,
   },
-  name: "Movie",
-  props: ["movie"],
+  name: "MovieCard",
+  props: {
+    movie: {
+      type: Object,
+      require: true,
+    },
+    handleLog: {
+      type: Function,
+      require: true,
+    },
+  },
 };
 </script>
 

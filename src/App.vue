@@ -14,12 +14,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <router-link to="/movies">Movies</router-link>
+        <li class="nav-item">
+          <router-link to="/movies" class="nav-link">Movies</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/maps" class="nav-link">Maps</router-link>
         </li>
       </ul>
     </div>
   </nav>
   <router-view />
 </template>
+<script>
+export default {};
+</script>
 <style></style>
