@@ -32,13 +32,13 @@
 </template>
 
 <script>
-import MovieModal from "@/components/MovieModal.vue";
+import MovieModal from '@/components/MovieModal.vue';
 
 export default {
   components: {
     MovieModal,
   },
-  name: "MovieCard",
+  name: 'MovieCard',
   props: {
     movie: {
       type: Object,

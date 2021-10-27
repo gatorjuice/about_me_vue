@@ -1,22 +1,22 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Movies from "../views/Movies.vue";
-import Maps from "../views/Maps.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
+import Movies from '../views/Movies.vue';
+import Maps from '../views/Maps.vue';
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home,
   },
   {
-    path: "/movies",
-    name: "Movies",
+    path: '/movies',
+    name: 'Movies',
     component: Movies,
   },
   {
-    path: "/maps",
-    name: "Maps",
+    path: '/maps',
+    name: 'Maps',
     component: Maps,
   },
 ];

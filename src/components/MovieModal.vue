@@ -57,8 +57,8 @@
 
 <script>
 export default {
-  name: "MovieModal",
-  props: ["movie"],
+  name: 'MovieModal',
+  props: ['movie'],
 };
 </script>
 

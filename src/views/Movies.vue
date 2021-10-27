@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import MovieSearch from "@/components/MovieSearch.vue";
+import MovieSearch from '@/components/MovieSearch.vue';
 
 export default {
-  name: "Movies",
+  name: 'Movies',
   components: {
     MovieSearch,
   },
