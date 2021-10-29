@@ -42,14 +42,12 @@ export default {
     toggleFavorite(book) {
       if (book.is_favorite) {
         HttpService.delete(`/user_books/${book.id}`, () => {
-          this.$emit("remove-book", book);
           book.is_favorite = false;
         });
       } else {
         const body = { book_id: book.id, user_id: 1 };
 
         HttpService.post("/user_books", body, () => {
-          this.$emit("add-book", book);
           book.is_favorite = true;
         });
       }

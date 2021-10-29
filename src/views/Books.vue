@@ -1,11 +1,7 @@
 <template>
   <div class="container">
-    <p>Favorites Count: {{ favoritesCount }}</p>
-    <BooksTable
-      @add-book="incFavorites"
-      @remove-book="decFavorites"
-      :books="books"
-    />
+    <p>Favorites Count: {{ favoritesCount() }}</p>
+    <BooksTable :books="this.$store.state.books" />
   </div>
 </template>
 
@@ -18,27 +14,17 @@ export default {
   components: {
     BooksTable,
   },
-  data() {
-    return {
-      books: [],
-      favoritesCount: 1,
-    };
-  },
   mounted() {
     this.getBooks();
   },
   methods: {
     getBooks() {
       HttpService.get("books", (status, response) => {
-        console.log(status);
-        this.books = response;
+        this.$store.commit("setBooks", response);
       });
     },
-    incFavorites() {
-      this.favoritesCount++;
-    },
-    decFavorites() {
-      this.favoritesCount--;
+    favoritesCount() {
+      return this.$store.state.books.filter((book) => book.is_favorite).length;
     },
   },
 };
