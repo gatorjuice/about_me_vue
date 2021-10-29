@@ -4,6 +4,7 @@ import { Integrations } from "@sentry/tracing";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "bootstrap";
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
