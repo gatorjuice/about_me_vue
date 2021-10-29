@@ -4,7 +4,7 @@
       <div class="form-group mx-sm-3 mb-2">
         <label class="sr-only" for="movieTitle">Movie Title</label>
         <input
-          v-model="this.form.movieTitle"
+          v-model="form.movieTitle"
           type="text"
           class="form-control"
           id="movieTitle"
@@ -27,10 +27,9 @@
   <div v-if="this.movies" class="container">
     <div class="row">
       <MovieCard
-        v-for="(movie, index) in this.movies"
+        v-for="(movie, index) in movies"
         :key="`movieCard${index}`"
         :movie="movie"
-        :handleLog="logMessage(movie.title)"
         :modalId="`movieCard${index}`"
       />
     </div>
@@ -38,11 +37,9 @@
 </template>
 
 <script>
-import axios from "axios";
 import { Circle8 } from "vue-loading-spinner";
 import MovieCard from "@/components/MovieCard.vue";
-
-axios.defaults.baseURL = process.env.VUE_APP_ABOUT_ME_API_ENDPOINT;
+import HttpService from "@/services/HttpService.js";
 
 export default {
   components: {
@@ -61,16 +58,16 @@ export default {
   },
   methods: {
     processForm() {
-      axios.get(`movies?title=${this.form.movieTitle}`).then((res) => {
-        this.movies = res.data.data;
-        this.toggleLoading();
-      });
+      HttpService.get(
+        `movies?title=${this.form.movieTitle}`,
+        (_status, response) => {
+          this.movies = response.data;
+          this.toggleLoading();
+        }
+      );
     },
     toggleLoading() {
       this.loading = !this.loading;
-    },
-    logMessage(value) {
-      console.log(value);
     },
   },
 };

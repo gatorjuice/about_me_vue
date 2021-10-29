@@ -17,6 +17,7 @@
     "bootstrap": "^5.0.0-beta3",
     "core-js": "^3.6.5",
     "datamaps": "^0.5.9",
+    "font-awesome": "^4.7.0",
     "global": "^4.4.0",
     "vue": "^3.0.0",
     "vue-loading-spinner": "^1.0.11",

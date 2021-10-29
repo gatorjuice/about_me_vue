@@ -21,6 +21,9 @@
           <li class="nav-item">
             <router-link to="/maps" class="nav-link">Maps</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/books" class="nav-link">Books</router-link>
+          </li>
         </ul>
       </div>
     </div>
