@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p>Favorites Count: {{ favoritesCount }}</p>
+    <p>Favorites Count: {{ countFavorites() }}</p>
     <BooksTable
       @add-book="incFavorites"
       @remove-book="decFavorites"
@@ -21,7 +21,6 @@ export default {
   data() {
     return {
       books: [],
-      favoritesCount: 1,
     };
   },
   mounted() {
@@ -39,6 +38,9 @@ export default {
     },
     decFavorites() {
       this.favoritesCount--;
+    },
+    countFavorites() {
+      return this.books.filter((book) => book.is_favorite).length;
     },
   },
 };
