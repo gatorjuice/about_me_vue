@@ -1,11 +1,11 @@
-import { createApp } from 'vue';
-import * as Sentry from '@sentry/vue';
-import { Integrations } from '@sentry/tracing';
-import App from './App.vue';
-import router from './router';
-import 'bootstrap';
+import { createApp } from "vue";
+import * as Sentry from "@sentry/vue";
+import { Integrations } from "@sentry/tracing";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   Sentry.init({
     App,
     dsn: process.env.VUE_APP_SENTRY_DSN,
@@ -13,8 +13,8 @@ if (process.env.NODE_ENV === 'production') {
       new Integrations.BrowserTracing({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),
         tracingOrigins: [
-          'localhost',
-          'about-me-frontend-vue.herokuapp.com/',
+          "localhost",
+          "about-me-frontend-vue.herokuapp.com/",
           /^\//,
         ],
       }),
@@ -26,4 +26,8 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-createApp(App).use(router).mount('#app');
+const app = createApp(App);
+
+app.use(router);
+app.use(store);
+app.mount("#app");
