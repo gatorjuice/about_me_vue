@@ -24,6 +24,11 @@
           <li class="nav-item">
             <router-link to="/books" class="nav-link">Books</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/funny_bot" class="nav-link"
+              >FunnyBot AI</router-link
+            >
+          </li>
         </ul>
       </div>
     </div>

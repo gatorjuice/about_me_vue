@@ -5,6 +5,8 @@ const Movies = () =>
   import(/* webpackChunkName: "movies" */ "@/views/Movies.vue");
 const Maps = () => import(/* webpackChunkName: "maps" */ "@/views/Maps.vue");
 const Books = () => import(/* webpackChunkName: "books" */ "@/views/Books.vue");
+const FunnyBot = () =>
+  import(/* webpackChunkName: "books" */ "@/views/FunnyBot.vue");
 
 const routes = [
   {
@@ -26,6 +28,11 @@ const routes = [
     path: "/books",
     name: "Books",
     component: Books,
+  },
+  {
+    path: "/funny_bot",
+    name: "FunnyBot",
+    component: FunnyBot,
   },
 ];
 
