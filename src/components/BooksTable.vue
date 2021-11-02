@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="book in books" :key="book.id">
+      <tr v-for="book in books" :key="book.id" :data-test="`book${book.id}`">
         <td>
           <span
             @click="toggleFavorite(book)"
