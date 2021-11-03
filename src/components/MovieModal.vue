@@ -65,7 +65,16 @@
 <script>
 export default {
   name: "MovieModal",
-  props: ["movie", "modalId"],
+  props: {
+    movie: {
+      type: Object,
+      required: true,
+    },
+    modalId: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>
 
