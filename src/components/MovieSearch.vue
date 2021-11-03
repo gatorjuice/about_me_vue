@@ -1,24 +1,25 @@
 <template>
   <div class="container">
-    <form class="form-inline" @submit.prevent="processForm">
-      <div class="form-group mx-sm-3 mb-2">
-        <label class="sr-only" for="movieTitle">Movie Title</label>
+    <form class="row g-3" @submit.prevent="processForm">
+      <div class="col-auto">
+        <label for="inputPassword2" class="visually-hidden">Password</label>
         <input
           v-model="form.movieTitle"
           type="text"
           class="form-control"
-          id="movieTitle"
-          aria-describedby="movieTitle"
+          id="inputPassword2"
           placeholder="Enter Movie Title"
         />
       </div>
-      <button
-        v-on:click="toggleLoading"
-        type="submit"
-        class="btn btn-primary mb-2"
-      >
-        Submit
-      </button>
+      <div class="col-auto">
+        <button
+          v-on:click="toggleLoading"
+          type="submit"
+          class="btn btn-primary mb-2"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   </div>
   <div class="container spinner">
@@ -80,5 +81,9 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+form {
+  padding-top: 1rem;
 }
 </style>
