@@ -2,12 +2,13 @@
   <div class="container">
     <form class="row g-3" @submit.prevent="processForm">
       <div class="col-auto">
-        <label for="inputPassword2" class="visually-hidden">Password</label>
+        <label for="movieTitle" class="visually-hidden">Password</label>
         <input
           v-model="form.movieTitle"
           type="text"
           class="form-control"
-          id="inputPassword2"
+          id="movieTitle"
+          aria-describedby="movieTitle"
           placeholder="Enter Movie Title"
         />
       </div>
