@@ -7,6 +7,8 @@ jest.mock("@/services/HttpService.js", () => ({
 }));
 
 describe("BooksTable", () => {
+  let wrapper;
+
   const books = [
     {
       id: 1,
@@ -23,8 +25,11 @@ describe("BooksTable", () => {
   ];
 
   const props = { books };
-  const wrapper = mount(BooksTable, { props });
-  const table_datas = wrapper.get('[data-test="book1"]').findAll("td");
+
+  beforeEach(() => {
+    wrapper = undefined;
+    wrapper = mount(BooksTable, { props });
+  });
 
   it("does a wrapper exist", () => {
     expect(wrapper.exists()).toBe(true);
@@ -36,20 +41,25 @@ describe("BooksTable", () => {
   });
 
   it("displays the title", () => {
+    const table_datas = wrapper.get('[data-test="book1"]').findAll("td");
+
     expect(table_datas[1].text()).toEqual("the testing");
   });
 
   it("displays the author", () => {
+    const table_datas = wrapper.get('[data-test="book1"]').findAll("td");
+
     expect(table_datas[2].text()).toEqual("Crass Bean");
   });
 
   describe("toggleFavorite", () => {
     describe("when book is not a favorite", () => {
       it("sets the book as a favorite", async () => {
-        const star = wrapper.get('[data-test="book1"]').get("span.fa");
+        const book = wrapper.get('[data-test="book1"]');
+        const star = book.get("span.fa");
         expect(star.classes()).toEqual(["fa", "fa-star-o"]);
 
-        await star.trigger("click");
+        await book.trigger("click");
 
         expect(star.classes()).toEqual(["fa", "checked", "fa-star"]);
       });
@@ -57,10 +67,11 @@ describe("BooksTable", () => {
 
     describe("when book is not a favorite", () => {
       it("removes the book as a favorite", async () => {
-        const star = wrapper.get('[data-test="book2"]').get("span.fa");
+        const book = wrapper.get('[data-test="book2"]');
+        const star = book.get("span.fa");
         expect(star.classes()).toEqual(["fa", "checked", "fa-star"]);
 
-        await star.trigger("click");
+        await book.trigger("click");
 
         expect(star.classes()).toEqual(["fa", "fa-star-o"]);
       });
