@@ -14,14 +14,15 @@
           project for each one, a production-level sandbox for concepts
         </p>
         <ul class="list-group">
-          <li class="list-group-item">Postgres</li>
+          <li class="list-group-item">PostgresQL</li>
+          <li class="list-group-item">Vuex Datastore</li>
           <li class="list-group-item">ReSTful API</li>
           <li class="list-group-item">3rd Party API Consumption</li>
-          <li class="list-group-item">JWT</li>
+          <li class="list-group-item">JWT for Auths</li>
           <li class="list-group-item">Action Cable and WebSockets</li>
           <li class="list-group-item">Concurrency in Ruby</li>
           <li class="list-group-item">Screen Scraping</li>
-          <li class="list-group-item">Testing</li>
+          <li class="list-group-item">Testing with Jest and Rspec</li>
           <li class="list-group-item">CI-CD Pipelines</li>
         </ul>
         <br />
@@ -87,11 +88,7 @@
     <!-- /container -->
   </main>
 </template>
-<script>
-export default {
-  name: "Home",
-};
-</script>
+<script></script>
 <style scoped>
 body {
   padding-top: 3.5rem;
