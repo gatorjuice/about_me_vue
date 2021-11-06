@@ -7,63 +7,90 @@ import HttpService from "@/services/HttpService.js";
 
 export default {
   name: "RepoTrackerChart",
-  methods: {
-    createChart(repoData) {
-      new Chart(document.getElementById("repoTrackerChart").getContext("2d"), {
-        type: "bar",
-        data: {
-          labels: repoData.map((repo) => repo.name),
-          datasets: [
-            {
-              label: "Forks",
-              backgroundColor: "rgba(255, 131, 96, 0.3)",
-              borderColor: "rgba(255, 131, 96, 0.8)",
-              data: repoData.map((repo) => repo.forks_count),
-            },
-            {
-              label: "Watchers",
-              backgroundColor: "rgba(89, 201, 165, 0.3)",
-              borderColor: "rgba(89, 201, 165, 0.8)",
-              data: repoData.map((repo) => repo.watchers_count),
-            },
-            {
-              label: "Stargazers",
-              backgroundColor: "rgba(27, 73, 101, 0.3)",
-              borderColor: "rgba(27, 73, 101, 0.8)",
-              data: repoData.map((repo) => repo.stargazers_count),
-            },
-            {
-              label: "Popularity",
-              backgroundColor: "rgba(118, 153, 212, 0.3)",
-              borderColor: "rgba(118, 153, 212, 0.8)",
-              data: repoData.map((repo) => repo.popularity_rating),
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: false,
-            },
-          },
-          plugins: {
-            legend: {
-              position: "top",
-            },
-            title: {
-              display: true,
-              text: "Repository Tracker",
-            },
-          },
-        },
-      });
+  props: {
+    category: {
+      type: String,
+      required: true,
     },
   },
-  mounted() {
-    HttpService.get("github_repos", (status, response) => {
-      this.createChart(response.data);
-    });
+  watch: {
+    category() {
+      this.chart.destroy();
+      this.getRepos();
+    },
+  },
+  created() {
+    this.getRepos();
+  },
+  methods: {
+    getRepos() {
+      HttpService.get(
+        `github_repos?category=${this.category}`,
+        (status, response) => {
+          this.createChart(response.data);
+        }
+      ).catch((error) => {
+        console.log(error);
+        this.createChart();
+      });
+    },
+    createChart(repoData = []) {
+      repoData.sort((a, b) => {
+        return b.popularity_rating - a.popularity_rating;
+      });
+      this.chart = new Chart(
+        document.getElementById("repoTrackerChart").getContext("2d"),
+        {
+          type: "bar",
+          data: {
+            labels: repoData.map((repo) => repo.name),
+            datasets: [
+              {
+                label: "Forks",
+                backgroundColor: "rgba(255, 131, 96, 0.3)",
+                borderColor: "rgba(255, 131, 96, 0.8)",
+                data: repoData.map((repo) => repo.forks_count),
+              },
+              {
+                label: "Watchers",
+                backgroundColor: "rgba(89, 201, 165, 0.3)",
+                borderColor: "rgba(89, 201, 165, 0.8)",
+                data: repoData.map((repo) => repo.watchers_count),
+              },
+              {
+                label: "Stargazers",
+                backgroundColor: "rgba(27, 73, 101, 0.3)",
+                borderColor: "rgba(27, 73, 101, 0.8)",
+                data: repoData.map((repo) => repo.stargazers_count),
+              },
+              {
+                label: "Popularity",
+                backgroundColor: "rgba(118, 153, 212, 0.3)",
+                borderColor: "rgba(118, 153, 212, 0.8)",
+                data: repoData.map((repo) => repo.popularity_rating),
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: false,
+              },
+            },
+            plugins: {
+              legend: {
+                position: "bottom",
+              },
+              title: {
+                display: true,
+                text: "Repository Tracker",
+              },
+            },
+          },
+        }
+      );
+    },
   },
 };
 </script>
