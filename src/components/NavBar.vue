@@ -29,6 +29,11 @@
               >FunnyBot AI</router-link
             >
           </li>
+          <li class="nav-item">
+            <router-link to="/repo_tracker" class="nav-link"
+              >Repo Tracker</router-link
+            >
+          </li>
         </ul>
       </div>
     </div>

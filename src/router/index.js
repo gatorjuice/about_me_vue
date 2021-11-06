@@ -7,6 +7,8 @@ const Maps = () => import(/* webpackChunkName: "maps" */ "@/views/Maps.vue");
 const Books = () => import(/* webpackChunkName: "books" */ "@/views/Books.vue");
 const FunnyBot = () =>
   import(/* webpackChunkName: "books" */ "@/views/FunnyBot.vue");
+const RepoTracker = () =>
+  import(/* webpackChunkName: "repoTracker" */ "@/views/RepoTracker.vue");
 
 const routes = [
   {
@@ -33,6 +35,11 @@ const routes = [
     path: "/funny_bot",
     name: "FunnyBot",
     component: FunnyBot,
+  },
+  {
+    path: "/repo_tracker",
+    name: "RepoTracker",
+    component: RepoTracker,
   },
 ];
 
