@@ -3,11 +3,14 @@
 </template>
 <script>
 import Chart from "chart.js/auto";
-import HttpService from "@/services/HttpService.js";
 
 export default {
   name: "RepoTrackerChart",
   props: {
+    repos: {
+      type: Array,
+      required: false,
+    },
     category: {
       type: String,
       required: true,
@@ -15,59 +18,64 @@ export default {
   },
   watch: {
     category() {
-      this.chart.destroy();
-      this.getRepos();
+      this.resetChart();
+    },
+    repos() {
+      this.resetChart();
     },
   },
-  created() {
-    this.getRepos();
+  mounted() {
+    this.resetChart();
   },
   methods: {
-    getRepos() {
-      HttpService.get(
-        `github_repos?category=${this.category}`,
-        (status, response) => {
-          this.createChart(response.data);
+    resetChart() {
+      if (this.chart) {
+        this.chart.destroy();
+      }
+      this.createChart();
+    },
+    filteredRepos() {
+      return [...this.repos].filter((repo) => {
+        if (this.category !== "all") {
+          return repo.category == this.category;
+        } else {
+          return true;
         }
-      ).catch((error) => {
-        console.log(error);
-        this.createChart();
       });
     },
-    createChart(repoData = []) {
-      repoData.sort((a, b) => {
-        return b.popularity_rating - a.popularity_rating;
-      });
+    createChart() {
       this.chart = new Chart(
         document.getElementById("repoTrackerChart").getContext("2d"),
         {
           type: "bar",
           data: {
-            labels: repoData.map((repo) => repo.name),
+            labels: this.filteredRepos().map((repo) => repo.name),
             datasets: [
               {
                 label: "Forks",
                 backgroundColor: "rgba(255, 131, 96, 0.3)",
                 borderColor: "rgba(255, 131, 96, 0.8)",
-                data: repoData.map((repo) => repo.forks_count),
+                data: this.filteredRepos().map((repo) => repo.forks_count),
               },
               {
                 label: "Watchers",
                 backgroundColor: "rgba(89, 201, 165, 0.3)",
                 borderColor: "rgba(89, 201, 165, 0.8)",
-                data: repoData.map((repo) => repo.watchers_count),
+                data: this.filteredRepos().map((repo) => repo.watchers_count),
               },
               {
                 label: "Stargazers",
                 backgroundColor: "rgba(27, 73, 101, 0.3)",
                 borderColor: "rgba(27, 73, 101, 0.8)",
-                data: repoData.map((repo) => repo.stargazers_count),
+                data: this.filteredRepos().map((repo) => repo.stargazers_count),
               },
               {
                 label: "Popularity",
                 backgroundColor: "rgba(118, 153, 212, 0.3)",
                 borderColor: "rgba(118, 153, 212, 0.8)",
-                data: repoData.map((repo) => repo.popularity_rating),
+                data: this.filteredRepos().map(
+                  (repo) => repo.popularity_rating
+                ),
               },
             ],
           },
