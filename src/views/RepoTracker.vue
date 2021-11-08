@@ -5,12 +5,16 @@
       class="form-select"
       aria-label="Default select example"
     >
-      <option value="all" selected>select category...</option>
+      <option value="all" selected>Select Category...</option>
       <option v-for="category in categories" :key="category" :value="category">
         {{ formattedCategory(category) }}
       </option>
     </select>
-    <RepoTrackerChart :category="category" :repos="sortedRepos" />
+    <RepoTrackerChart
+      v-if="repos.length"
+      :category="category"
+      :repos="sortedRepos"
+    />
   </div>
 </template>
 <script>
@@ -28,7 +32,13 @@ export default {
   },
   methods: {
     formattedCategory(category) {
-      return category.split("_").join(" ");
+      return category
+        .split("_")
+        .map((word) => this.capitalizeWord(word))
+        .join(" ");
+    },
+    capitalizeWord(word) {
+      return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
     },
   },
   computed: {

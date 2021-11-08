@@ -18,18 +18,22 @@ export default {
   },
   watch: {
     category() {
-      this.chart.destroy();
-      this.createChart();
+      this.resetChart();
     },
     repos() {
-      this.chart.destroy();
-      this.createChart();
+      this.resetChart();
     },
   },
   mounted() {
-    this.createChart();
+    this.resetChart();
   },
   methods: {
+    resetChart() {
+      if (this.chart) {
+        this.chart.destroy();
+      }
+      this.createChart();
+    },
     filteredRepos() {
       return [...this.repos].filter((repo) => {
         if (this.category !== "all") {
