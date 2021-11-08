@@ -2,15 +2,25 @@
   <div class="container">
     <form class="row g-3" @submit.prevent="processForm">
       <div class="col-auto">
-        <label for="movieTitle" class="visually-hidden">Password</label>
-        <input
-          v-model="form.movieTitle"
-          type="text"
-          class="form-control"
-          id="movieTitle"
-          aria-describedby="movieTitle"
-          placeholder="Enter Movie Title"
-        />
+        <label for="movieTitle" class="visually-hidden">Movie Title</label>
+        <div class="input-group mb-3">
+          <input
+            v-model="form.movieTitle"
+            type="text"
+            class="form-control"
+            id="movieTitle"
+            aria-describedby="movieTitle"
+            placeholder="Enter Movie Title"
+          />
+          <button
+            @click="clearInput"
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+          >
+            Clear
+          </button>
+        </div>
       </div>
       <div class="col-auto">
         <button
@@ -54,6 +64,9 @@ export default {
     };
   },
   methods: {
+    clearInput() {
+      this.form.movieTitle = "";
+    },
     processForm() {
       HttpService.get(
         `movies?title=${this.form.movieTitle}`,
