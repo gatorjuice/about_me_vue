@@ -18,13 +18,10 @@
           type="submit"
           class="btn btn-primary mb-2"
         >
-          Submit
+          {{ loading ? "Loading..." : "Submit" }}
         </button>
       </div>
     </form>
-  </div>
-  <div class="container spinner">
-    <circle8 v-if="this.loading"></circle8>
   </div>
   <div v-if="this.movies" class="container">
     <div class="row">
@@ -39,14 +36,12 @@
 </template>
 
 <script>
-import { Circle8 } from "vue-loading-spinner";
 import MovieCard from "@/components/MovieCard.vue";
 import HttpService from "@/services/HttpService.js";
 
 export default {
   components: {
     MovieCard,
-    Circle8,
   },
   name: "MovieSearch",
   data() {
@@ -76,14 +71,6 @@ export default {
 </script>
 
 <style scoped>
-.spinner {
-  position: fixed;
-  z-index: 1031;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 form {
   padding-top: 1rem;
 }
