@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import Datamap from 'datamaps';
+import Datamap from "datamaps";
 
 export default {
-  name: 'Map',
+  name: "Map",
   props: {
     fills: {
       type: Object,
@@ -21,7 +21,7 @@ export default {
   },
   mounted() {
     new Datamap({
-      element: document.getElementById('dataMap'),
+      element: document.getElementById("dataMap"),
       scope: this.scope,
       fills: this.fills,
       data: this.data,
@@ -34,7 +34,7 @@ export default {
 #dataMap {
   display: block;
   vertical-align: middle;
-  margin: 0 auto;
+  margin: 0 auto 0 100px;
   position: absolute;
   top: 5%;
   bottom: 5%;

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.16.0",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.10.2",
     "@sentry/tracing": "^6.13.3",
     "@sentry/vue": "^6.13.3",
@@ -22,6 +23,7 @@
     "datamaps": "^0.5.9",
     "font-awesome": "^4.7.0",
     "global": "^4.4.0",
+    "startbootstrap-resume": "^7.0.4",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.2"

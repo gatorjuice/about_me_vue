@@ -1,92 +1,69 @@
 <template>
-  <main role="main">
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">About Me!</h1>
-        <p>
+  <!-- Page Content-->
+  <div class="container-fluid p-0">
+    <!-- About-->
+    <section class="resume-section" id="about">
+      <div class="resume-section-content">
+        <h1 class="mb-0">
+          James
+          <span class="text-primary">Gates</span>
+        </h1>
+        <div class="subheading mb-5">
+          Chicago, IL
+          <a href="mailto:gatorjuice@gmail.com">gatorjuice@gmail.com</a>
+        </div>
+        <h2 class="mb-5">About Me Project</h2>
+        <p class="lead mb-5">
           This project exists for educational and experimentational reasons.
           Written in Vue.js, it consumes a Rails API. Between the front and back
-          ends, I demonstrate work with numerous technologies and concepts.
+          ends, I demonstrate work with numerous technologies and concepts. It's
+          a bit of a hodgepodge of features but the purpose is to have a place
+          to try new ideas without needing to boilerplate a whole new project
+          for each one, a production-level sandbox for concepts
         </p>
-        <p>
-          It's a bit of a hodgepodge of features but the purpose is to have a
-          place to try new ideas without needing to boilerplate a whole new
-          project for each one, a production-level sandbox for concepts
-        </p>
-        <ul class="list-group">
-          <li class="list-group-item">PostgresQL</li>
-          <li class="list-group-item">Vuex Datastore</li>
-          <li class="list-group-item">ReSTful API</li>
-          <li class="list-group-item">3rd Party API Consumption</li>
-          <li class="list-group-item">JWT for Auths</li>
-          <li class="list-group-item">Action Cable and WebSockets</li>
-          <li class="list-group-item">Concurrency in Ruby</li>
-          <li class="list-group-item">Screen Scraping</li>
-          <li class="list-group-item">Testing with Jest and Rspec</li>
-          <li class="list-group-item">CI-CD Pipelines</li>
-        </ul>
-        <br />
-        <p>
-          <a
-            class="btn btn-primary btn-lg"
-            href="https://github.com/gatorjuice"
-            role="button"
-            target="_blank"
-            >My Github &raquo;</a
+        <div class="flex-grow-1">
+          <h3 class="mb-0">Front End</h3>
+          <div class="subheading mb-3">Vue.js</div>
+          <p>Play around and explore.</p>
+        </div>
+        <div class="flex-shrink-0">
+          <span class="text-primary"
+            ><a href="https://github.com/gatorjuice/about_me_vue"
+              >See project on Github</a
+            ></span
           >
-        </p>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Backend</h2>
-          <p>The backend serving this web application is written in Rails.</p>
-          <p>
-            <a
-              class="btn btn-secondary"
-              href="https://github.com/gatorjuice/about_me_api"
-              role="button"
-              target="_blank"
-              >About Me API &raquo;</a
-            >
-          </p>
         </div>
-        <div class="col-md-4">
-          <h2>Frontend</h2>
-          <p>
-            This is an ongoing experiment in Vue.js. The framework is really
-            terrific and fun to learn.
-          </p>
-          <p>
-            <a
-              class="btn btn-secondary"
-              href="https://github.com/gatorjuice/about_me_vue"
-              role="button"
-              target="_blank"
-              >About Me Vue &raquo;</a
-            >
-          </p>
+        <div
+          class="d-flex flex-column flex-md-row justify-content-between mb-5"
+        ></div>
+        <div class="flex-grow-1">
+          <h3 class="mb-0">Back End</h3>
+          <div class="subheading mb-3">Ruby on Rails</div>
+          <p>Rails app running API mode.</p>
         </div>
-        <div class="col-md-4">
-          <h2>More About Me</h2>
-          <p>Check out my LinkedIn profile to learn more about me.</p>
-          <p>
-            <a
-              class="btn btn-secondary"
-              href="https://www.linkedin.com/in/jamesrgates48/"
-              role="button"
-              >LinkedIn &raquo;</a
-            >
-          </p>
+        <div class="flex-shrink-0">
+          <span class="text-primary"
+            ><a href="https://github.com/gatorjuice/about_me_api"
+              >See project on Github</a
+            ></span
+          >
+        </div>
+        <div
+          class="d-flex flex-column flex-md-row justify-content-between mb-5"
+        ></div>
+        <div class="social-icons">
+          <a class="social-icon" href="https://github.com/gatorjuice"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            class="social-icon"
+            href="https://www.linkedin.com/in/jamesrgates48/"
+            ><i class="fab fa-linkedin"></i
+          ></a>
         </div>
       </div>
-
-      <hr />
-    </div>
-    <!-- /container -->
-  </main>
+    </section>
+  </div>
 </template>
 <script></script>
 <style scoped>
