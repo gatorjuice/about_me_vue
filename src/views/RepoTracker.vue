@@ -20,9 +20,9 @@
       <div class="col-sm-6">
         <select v-model="orderBy" class="form-select" aria-label="Sort By">
           <option value="popularity_rating" selected>Popularity</option>
-          <option value="forks_count" selected>Forks</option>
-          <option value="watchers_count" selected>Watchers</option>
-          <option value="stargazers_count" selected>Stargazers</option>
+          <option value="forks_count">Forks</option>
+          <option value="watchers_count">Watchers</option>
+          <option value="stargazers_count">Stargazers</option>
         </select>
       </div>
     </div>
