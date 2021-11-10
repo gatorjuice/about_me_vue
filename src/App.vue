@@ -45,4 +45,5 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@400;700&display=swap");
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~startbootstrap-resume/dist/css/styles.css";
+@import "~font-awesome/css/font-awesome.min.css";
 </style>

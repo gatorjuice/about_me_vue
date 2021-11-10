@@ -1,11 +1,15 @@
+import "bootstrap";
+import "startbootstrap-resume/dist/js/scripts.js";
+import "@fortawesome/fontawesome-free/js/brands.js";
+import "@fortawesome/fontawesome-free/js/solid.js";
+import "@fortawesome/fontawesome-free/js/fontawesome.js";
+
 import { createApp } from "vue";
 import * as Sentry from "@sentry/vue";
 import { Integrations } from "@sentry/tracing";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import "bootstrap";
-import "startbootstrap-resume/dist/js/scripts.js";
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
