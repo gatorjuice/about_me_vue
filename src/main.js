@@ -5,6 +5,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "bootstrap";
+import "startbootstrap-resume/dist/js/scripts.js";
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({

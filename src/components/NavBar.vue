@@ -1,41 +1,49 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <router-link to="/" class="navbar-brand">James Gates</router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <router-link to="/movies" class="nav-link">Movies</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/maps" class="nav-link">Maps</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/books" class="nav-link">Books</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/funny_bot" class="nav-link"
-              >FunnyBot AI</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/repo_tracker" class="nav-link"
-              >Repo Tracker</router-link
-            >
-          </li>
-        </ul>
-      </div>
+  <nav
+    class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+    id="sideNav"
+  >
+    <router-link to="/" class="navbar-brand">
+      <span class="d-block d-lg-none">James Gates</span>
+      <span class="d-none d-lg-block"
+        ><img
+          class="img-fluid img-profile rounded-circle mx-auto mb-2"
+          src="@/assets/img/profile.jpg"
+          alt="..." /></span
+    ></router-link>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <router-link to="/movies" class="nav-link">Movies</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/maps" class="nav-link">Maps</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/books" class="nav-link">Books</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/funny_bot" class="nav-link"
+            >FunnyBot AI</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link to="/repo_tracker" class="nav-link"
+            >Repo Tracker</router-link
+          >
+        </li>
+      </ul>
     </div>
   </nav>
 </template>
