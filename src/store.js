@@ -20,6 +20,9 @@ const store = createStore({
       state.funnyBot.messages = messages;
     },
     toggleApiVisualizer(state) {
+      if (state.apiVisualizer.show) {
+        state.apiVisualizer.apiRequests = [];
+      }
       state.apiVisualizer.show = !state.apiVisualizer.show;
     },
     addApiRequest(state, request) {
