@@ -48,7 +48,7 @@ class HttpService {
     document.location = path;
   };
 
-  get(path, store = null, callback) {
+  get(path, store, callback) {
     return this.service.get(path).then((response) => {
       if (store) {
         store.commit("addApiRequest", {
@@ -64,7 +64,7 @@ class HttpService {
     });
   }
 
-  delete(path, store = null, callback) {
+  delete(path, store, callback) {
     return this.service
       .request({
         method: "DELETE",
@@ -86,7 +86,7 @@ class HttpService {
       });
   }
 
-  post(path, payload, store = null, callback) {
+  post(path, payload, store, callback) {
     return this.service
       .request({
         method: "POST",
