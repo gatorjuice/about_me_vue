@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     getBooks() {
-      HttpService.get("books", (status, response) => {
+      HttpService.get("books", this.$store, (status, response) => {
         this.$store.commit("setBooks", response);
       });
     },

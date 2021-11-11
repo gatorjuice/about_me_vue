@@ -1,4 +1,5 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 axios.defaults.baseURL = process.env.VUE_APP_ABOUT_ME_API_ENDPOINT;
 axios.defaults.timeout = process.env.VUE_APP_AXIOS_TIMEOUT;
@@ -47,23 +48,45 @@ class HttpService {
     document.location = path;
   };
 
-  get(path, callback) {
-    return this.service
-      .get(path)
-      .then((response) => callback(response.status, response.data));
+  get(path, store = null, callback) {
+    return this.service.get(path).then((response) => {
+      if (store) {
+        store.commit("addApiRequest", {
+          id: uuidv4(),
+          url: `GET ${path}`,
+          response: {
+            body: response.data,
+            status: response.status,
+          },
+        });
+      }
+      return callback(response.status, response.data);
+    });
   }
 
-  delete(path, callback) {
+  delete(path, store = null, callback) {
     return this.service
       .request({
         method: "DELETE",
         url: path,
         responseType: "json",
       })
-      .then((response) => callback(response.status, response.data));
+      .then((response) => {
+        if (store) {
+          store.commit("addApiRequest", {
+            id: uuidv4(),
+            url: `DELETE ${path}`,
+            response: {
+              body: response.data,
+              status: response.status,
+            },
+          });
+        }
+        return callback(response.status, response.data);
+      });
   }
 
-  post(path, payload, callback) {
+  post(path, payload, store = null, callback) {
     return this.service
       .request({
         method: "POST",
@@ -71,7 +94,20 @@ class HttpService {
         responseType: "json",
         data: payload,
       })
-      .then((response) => callback(response.status, response.data));
+      .then((response) => {
+        if (store) {
+          store.commit("addApiRequest", {
+            id: uuidv4(),
+            url: `POST ${path}`,
+            payload: payload,
+            response: {
+              body: response.data,
+              status: response.status,
+            },
+          });
+        }
+        return callback(response.status, response.data);
+      });
   }
 }
 

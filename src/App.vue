@@ -1,34 +1,36 @@
 <template>
   <NavBar />
-  <div v-if="showFlash" class="container">
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-      <svg
-        class="bi flex-shrink-0 me-2"
-        width="24"
-        height="24"
-        role="img"
-        aria-label="Danger:"
+  <div class="container">
+    <div class="form-check form-switch">
+      <input
+        v-model="checked"
+        class="form-check-input"
+        type="checkbox"
+        id="flexSwitchCheckDefault"
+      />
+      <label class="form-check-label" for="flexSwitchCheckDefault"
+        >Show API Requests</label
       >
-        <use xlink:href="#exclamation-triangle-fill" />
-      </svg>
-      <div>An example danger alert with an icon</div>
     </div>
   </div>
   <RouterView />
+  <ApiVisualizer v-show="checked" />
 </template>
 <script>
 import NavBar from "@/components/NavBar.vue";
+import ApiVisualizer from "@/components/ApiVisualizer.vue";
 
 export default {
   components: {
     NavBar,
+    ApiVisualizer,
   },
   onError() {
     return {};
   },
   data() {
     return {
-      showFlash: false,
+      checked: true,
     };
   },
   mounted() {
@@ -41,7 +43,10 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+.form-switch {
+  margin-top: 5px;
+}
 @import url("https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@400;700&display=swap");
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~startbootstrap-resume/dist/css/styles.css";

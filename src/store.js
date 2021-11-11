@@ -6,6 +6,9 @@ const store = createStore({
     funnyBot: {
       messages: [],
     },
+    apiVisualizer: {
+      apiRequests: [],
+    },
   },
   mutations: {
     setBooks(state, books) {
@@ -13,6 +16,12 @@ const store = createStore({
     },
     setMessages(state, messages) {
       state.funnyBot.messages = messages;
+    },
+    addApiRequest(state, request) {
+      state.apiVisualizer.apiRequests = [
+        ...state.apiVisualizer.apiRequests,
+        request,
+      ];
     },
   },
 });
