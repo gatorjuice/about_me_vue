@@ -14,17 +14,11 @@
         :key="book.id"
         :data-test="`book${book.id}`"
       >
-        <td>
-          <span
-            :class="[
-              'fa',
-              {
-                checked: book.is_favorite,
-                'fa-star': book.is_favorite,
-                'fa-star-o': !book.is_favorite,
-              },
-            ]"
-          ></span>
+        <td v-if="book.is_favorite">
+          <i class="fas fa-star checked"></i>
+        </td>
+        <td v-else>
+          <i class="fas fa-star unchecked"></i>
         </td>
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
@@ -62,5 +56,6 @@ export default {
 <style>
 .checked {
   color: orange;
+  unchecked: black;
 }
 </style>
