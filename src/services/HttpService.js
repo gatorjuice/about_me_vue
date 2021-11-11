@@ -1,10 +1,12 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 axios.defaults.baseURL = process.env.VUE_APP_ABOUT_ME_API_ENDPOINT;
 axios.defaults.timeout = process.env.VUE_APP_AXIOS_TIMEOUT;
 
 class HttpService {
-  constructor() {
+  constructor(store = null) {
+    this.store = store;
     let service = axios.create();
 
     service.interceptors.response.use(this.handleSuccess, this.handleError);
@@ -48,9 +50,19 @@ class HttpService {
   };
 
   get(path, callback) {
-    return this.service
-      .get(path)
-      .then((response) => callback(response.status, response.data));
+    return this.service.get(path).then((response) => {
+      if (this.store) {
+        this.store.commit("addApiRequest", {
+          id: uuidv4(),
+          url: `GET ${path}`,
+          response: {
+            body: response.data,
+            status: response.status,
+          },
+        });
+      }
+      return callback(response.status, response.data);
+    });
   }
 
   delete(path, callback) {
@@ -60,7 +72,19 @@ class HttpService {
         url: path,
         responseType: "json",
       })
-      .then((response) => callback(response.status, response.data));
+      .then((response) => {
+        if (this.store) {
+          this.store.commit("addApiRequest", {
+            id: uuidv4(),
+            url: `DELETE ${path}`,
+            response: {
+              body: response.data,
+              status: response.status,
+            },
+          });
+        }
+        return callback(response.status, response.data);
+      });
   }
 
   post(path, payload, callback) {
@@ -71,8 +95,21 @@ class HttpService {
         responseType: "json",
         data: payload,
       })
-      .then((response) => callback(response.status, response.data));
+      .then((response) => {
+        if (this.store) {
+          this.store.commit("addApiRequest", {
+            id: uuidv4(),
+            url: `POST ${path}`,
+            payload: payload,
+            response: {
+              body: response.data,
+              status: response.status,
+            },
+          });
+        }
+        return callback(response.status, response.data);
+      });
   }
 }
 
-export default new HttpService();
+export default HttpService;

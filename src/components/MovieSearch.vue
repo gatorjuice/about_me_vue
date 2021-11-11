@@ -68,7 +68,7 @@ export default {
       this.form.movieTitle = "";
     },
     processForm() {
-      HttpService.get(
+      new HttpService(this.$store).get(
         `movies?title=${this.form.movieTitle}`,
         (_status, response) => {
           this.movies = response.data;
