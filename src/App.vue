@@ -3,7 +3,8 @@
   <div class="container">
     <div class="form-check form-switch">
       <input
-        v-model="checked"
+        :checked="showApiRequests"
+        @click="toggleShowApiRequests"
         class="form-check-input"
         type="checkbox"
         id="flexSwitchCheckDefault"
@@ -14,7 +15,7 @@
     </div>
   </div>
   <RouterView />
-  <ApiVisualizer v-show="checked" />
+  <ApiVisualizer v-show="showApiRequests" />
 </template>
 <script>
 import NavBar from "@/components/NavBar.vue";
@@ -28,17 +29,20 @@ export default {
   onError() {
     return {};
   },
-  data() {
-    return {
-      checked: true,
-    };
-  },
   mounted() {
     document.body.setAttribute("id", "page-top");
+  },
+  computed: {
+    showApiRequests() {
+      return this.$store.state.apiVisualizer.show;
+    },
   },
   methods: {
     setError() {
       this.showFlash = true;
+    },
+    toggleShowApiRequests() {
+      this.$store.commit("toggleApiVisualizer");
     },
   },
 };

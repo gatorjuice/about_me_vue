@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import VuexPersistence from "vuex-persist";
 
 const store = createStore({
   state: {
@@ -7,6 +8,7 @@ const store = createStore({
       messages: [],
     },
     apiVisualizer: {
+      show: true,
       apiRequests: [],
     },
   },
@@ -17,6 +19,9 @@ const store = createStore({
     setMessages(state, messages) {
       state.funnyBot.messages = messages;
     },
+    toggleApiVisualizer(state) {
+      state.apiVisualizer.show = !state.apiVisualizer.show;
+    },
     addApiRequest(state, request) {
       state.apiVisualizer.apiRequests = [
         ...state.apiVisualizer.apiRequests,
@@ -24,6 +29,7 @@ const store = createStore({
       ];
     },
   },
+  plugins: [new VuexPersistence().plugin],
 });
 
 export default store;
