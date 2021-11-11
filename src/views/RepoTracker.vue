@@ -85,7 +85,7 @@ export default {
     RepoTrackerTable,
   },
   created() {
-    HttpService.get(`github_repos`, this.$store, (status, response) => {
+    new HttpService(this.$store).get(`github_repos`, (status, response) => {
       this.repos = response.data;
       this.categories = [
         ...new Set(

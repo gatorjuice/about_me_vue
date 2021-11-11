@@ -5,7 +5,8 @@ axios.defaults.baseURL = process.env.VUE_APP_ABOUT_ME_API_ENDPOINT;
 axios.defaults.timeout = process.env.VUE_APP_AXIOS_TIMEOUT;
 
 class HttpService {
-  constructor() {
+  constructor(store = null) {
+    this.store = store;
     let service = axios.create();
 
     service.interceptors.response.use(this.handleSuccess, this.handleError);
@@ -48,10 +49,10 @@ class HttpService {
     document.location = path;
   };
 
-  get(path, store, callback) {
+  get(path, callback) {
     return this.service.get(path).then((response) => {
-      if (store) {
-        store.commit("addApiRequest", {
+      if (this.store) {
+        this.store.commit("addApiRequest", {
           id: uuidv4(),
           url: `GET ${path}`,
           response: {
@@ -64,7 +65,7 @@ class HttpService {
     });
   }
 
-  delete(path, store, callback) {
+  delete(path, callback) {
     return this.service
       .request({
         method: "DELETE",
@@ -72,8 +73,8 @@ class HttpService {
         responseType: "json",
       })
       .then((response) => {
-        if (store) {
-          store.commit("addApiRequest", {
+        if (this.store) {
+          this.store.commit("addApiRequest", {
             id: uuidv4(),
             url: `DELETE ${path}`,
             response: {
@@ -86,7 +87,7 @@ class HttpService {
       });
   }
 
-  post(path, payload, store, callback) {
+  post(path, payload, callback) {
     return this.service
       .request({
         method: "POST",
@@ -95,8 +96,8 @@ class HttpService {
         data: payload,
       })
       .then((response) => {
-        if (store) {
-          store.commit("addApiRequest", {
+        if (this.store) {
+          this.store.commit("addApiRequest", {
             id: uuidv4(),
             url: `POST ${path}`,
             payload: payload,
@@ -111,4 +112,4 @@ class HttpService {
   }
 }
 
-export default new HttpService();
+export default HttpService;
