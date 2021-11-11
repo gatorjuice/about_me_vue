@@ -3,6 +3,7 @@ import VuexPersistence from "vuex-persist";
 
 const store = createStore({
   state: {
+    jwt: "",
     books: [],
     funnyBot: {
       messages: [],
@@ -13,6 +14,9 @@ const store = createStore({
     },
   },
   mutations: {
+    setToken(state, token) {
+      state.jwt = token;
+    },
     setBooks(state, books) {
       state.books = books;
     },
