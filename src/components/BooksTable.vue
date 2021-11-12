@@ -43,11 +43,13 @@ export default {
           book.is_favorite = false;
         });
       } else {
-        const body = { book_id: book.id, user_id: 1 };
-
-        new HttpService(this.$store).post("/user_books", body, () => {
-          book.is_favorite = true;
-        });
+        new HttpService(this.$store).post(
+          "/user_books",
+          { book_id: book.id },
+          () => {
+            book.is_favorite = true;
+          }
+        );
       }
     },
   },

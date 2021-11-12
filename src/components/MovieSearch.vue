@@ -13,23 +13,13 @@
             placeholder="Enter Movie Title"
           />
           <button
-            @click="clearInput"
+            @click="toggleLoading"
+            type="submit"
             class="btn btn-outline-secondary"
-            type="button"
-            id="button-addon2"
           >
-            Clear
+            {{ loading ? "Loading..." : "Submit" }}
           </button>
         </div>
-      </div>
-      <div class="col-auto">
-        <button
-          v-on:click="toggleLoading"
-          type="submit"
-          class="btn btn-primary mb-2"
-        >
-          {{ loading ? "Loading..." : "Submit" }}
-        </button>
       </div>
     </form>
   </div>
@@ -64,13 +54,11 @@ export default {
     };
   },
   methods: {
-    clearInput() {
-      this.form.movieTitle = "";
-    },
     processForm() {
       new HttpService(this.$store).get(
         `movies?title=${this.form.movieTitle}`,
         (_status, response) => {
+          this.form.movieTitle = "";
           this.movies = response.data;
           this.toggleLoading();
         }

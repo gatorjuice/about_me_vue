@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 axios.defaults.baseURL = process.env.VUE_APP_ABOUT_ME_API_ENDPOINT;
 axios.defaults.timeout = process.env.VUE_APP_AXIOS_TIMEOUT;
+axios.defaults.headers.common["Authorization"] = this;
 
 class HttpService {
   constructor(store = null) {
@@ -50,19 +51,21 @@ class HttpService {
   };
 
   get(path, callback) {
-    return this.service.get(path).then((response) => {
-      if (this.store) {
-        this.store.commit("addApiRequest", {
-          id: uuidv4(),
-          url: `GET ${path}`,
-          response: {
-            body: response.data,
-            status: response.status,
-          },
-        });
-      }
-      return callback(response.status, response.data);
-    });
+    return this.service
+      .get(path, { headers: this.headers() })
+      .then((response) => {
+        if (this.store) {
+          this.store.commit("addApiRequest", {
+            id: uuidv4(),
+            url: `GET ${path}`,
+            response: {
+              body: response.data,
+              status: response.status,
+            },
+          });
+        }
+        return callback(response.status, response.data);
+      });
   }
 
   delete(path, callback) {
@@ -71,6 +74,7 @@ class HttpService {
         method: "DELETE",
         url: path,
         responseType: "json",
+        headers: this.headers(),
       })
       .then((response) => {
         if (this.store) {
@@ -94,6 +98,7 @@ class HttpService {
         url: path,
         responseType: "json",
         data: payload,
+        headers: this.headers(),
       })
       .then((response) => {
         if (this.store) {
@@ -109,6 +114,17 @@ class HttpService {
         }
         return callback(response.status, response.data);
       });
+  }
+
+  headers() {
+    console.log(this.store.state.jwt);
+    if (this.store.state.jwt) {
+      return {
+        Authorization: `Bearer ${this.store.state.jwt}`,
+      };
+    } else {
+      return {};
+    }
   }
 }
 

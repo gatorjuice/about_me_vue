@@ -68,10 +68,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const vuex = JSON.parse(localStorage.getItem("vuex"));
   // trying to access a restricted page + not logged in
   // redirect to login page
-  if (vuex && to.matched.some((record) => record.meta.requiresAuth)) {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    const vuex = JSON.parse(localStorage.getItem("vuex"));
     const loggedIn = vuex["jwt"];
 
     if (!loggedIn) {
