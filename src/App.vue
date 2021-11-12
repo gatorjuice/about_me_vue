@@ -30,6 +30,7 @@ export default {
     return {};
   },
   mounted() {
+    this.$store.commit("initialize");
     document.body.setAttribute("id", "page-top");
   },
   computed: {

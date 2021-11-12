@@ -48,7 +48,7 @@ export default {
         (status, response) => {
           if (response.data.token) {
             this.$store.commit("setToken", response.data.token);
-            document.location = "/repo_tracker";
+            document.location = "/";
           }
         }
       );
