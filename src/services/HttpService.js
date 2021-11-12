@@ -33,7 +33,7 @@ class HttpService {
     console.log(error);
     switch (error.response.status) {
       case 401:
-        this.redirectTo(document, "/");
+        this.redirectTo(document, "/login");
         break;
       case 404:
         this.redirectTo(document, "/");

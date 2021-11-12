@@ -26,11 +26,6 @@ export default {
     NavBar,
     ApiVisualizer,
   },
-  watch: {
-    $route(to, from) {
-      console.log(to, from);
-    },
-  },
   onError() {
     return {};
   },

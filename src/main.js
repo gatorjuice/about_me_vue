@@ -1,5 +1,5 @@
 import "bootstrap";
-import "startbootstrap-resume/dist/js/scripts.js";
+// import "startbootstrap-resume/dist/js/scripts.js";
 import "@fortawesome/fontawesome-free/js/brands.js";
 import "@fortawesome/fontawesome-free/js/solid.js";
 import "@fortawesome/fontawesome-free/js/fontawesome.js";
