@@ -1,28 +1,23 @@
 <template>
-  <div class="container">
-    <p>Favorites Count: {{ favoritesCount() }}</p>
-    <BooksTable :books="this.$store.state.books" />
-  </div>
+  <h3>Favorite Books</h3>
+  <p>
+    This was one of the first elements of this project. A trial of simple
+    toggling and conditonal templating. It was also the first use of Vuex for a
+    central store, which is now used throughout the app.
+  </p>
+  <h4>Favorites Count: {{ favoritesCount() }}</h4>
+  <BooksTable />
 </template>
 
 <script>
 import BooksTable from "@/components/BooksTable.vue";
-import HttpService from "@/services/HttpService.js";
 
 export default {
   name: "Books",
   components: {
     BooksTable,
   },
-  mounted() {
-    this.getBooks();
-  },
   methods: {
-    getBooks() {
-      new HttpService(this.$store).get("books", (status, response) => {
-        this.$store.commit("setBooks", response);
-      });
-    },
     favoritesCount() {
       return this.$store.state.books.filter((book) => book.is_favorite).length;
     },

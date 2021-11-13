@@ -1,13 +1,11 @@
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 axios.defaults.baseURL = process.env.VUE_APP_ABOUT_ME_API_ENDPOINT;
 axios.defaults.timeout = process.env.VUE_APP_AXIOS_TIMEOUT;
-axios.defaults.headers.common["Authorization"] = this;
 
 class HttpService {
-  constructor(store = null) {
-    this.store = store;
+  constructor() {
     let service = axios.create();
 
     service.interceptors.response.use(this.handleSuccess, this.handleError);
@@ -50,82 +48,70 @@ class HttpService {
     document.location = path;
   };
 
-  get(path, callback) {
-    return this.service
-      .get(path, { headers: this.headers() })
-      .then((response) => {
-        if (this.store) {
-          this.store.commit("addApiRequest", {
-            id: uuidv4(),
-            url: `GET ${path}`,
-            response: {
-              body: response.data,
-              status: response.status,
-            },
-          });
-        }
-        return callback(response.status, response.data);
-      });
+  get(path, headers, callback) {
+    return this.service.get(path, { headers: headers }).then((response) => {
+      // this.store.commit("addApiRequest", {
+      //   id: uuidv4(),
+      //   url: `GET ${path}`,
+      //   response: {
+      //     body: response.data,
+      //     status: response.status,
+      //   },
+      // });
+      return callback(response.status, response.data);
+    });
   }
 
-  delete(path, callback) {
+  delete(path, headers, callback) {
     return this.service
       .request({
         method: "DELETE",
         url: path,
         responseType: "json",
-        headers: this.headers(),
+        headers: headers,
       })
       .then((response) => {
-        if (this.store) {
-          this.store.commit("addApiRequest", {
-            id: uuidv4(),
-            url: `DELETE ${path}`,
-            response: {
-              body: response.data,
-              status: response.status,
-            },
-          });
-        }
+        // this.store.commit("addApiRequest", {
+        //   id: uuidv4(),
+        //   url: `DELETE ${path}`,
+        //   response: {
+        //     body: response.data,
+        //     status: response.status,
+        //   },
+        // });
         return callback(response.status, response.data);
       });
   }
 
-  post(path, payload, callback) {
+  post(path, payload, headers, callback) {
     return this.service
       .request({
         method: "POST",
         url: path,
         responseType: "json",
         data: payload,
-        headers: this.headers(),
+        headers: headers,
       })
       .then((response) => {
-        if (this.store) {
-          this.store.commit("addApiRequest", {
-            id: uuidv4(),
-            url: `POST ${path}`,
-            payload: payload,
-            response: {
-              body: response.data,
-              status: response.status,
-            },
-          });
-        }
+        // this.store.commit("addApiRequest", {
+        //   id: uuidv4(),
+        //   url: `POST ${path}`,
+        //   payload: payload,
+        //   response: {
+        //     body: response.data,
+        //     status: response.status,
+        //   },
+        // });
         return callback(response.status, response.data);
       });
   }
 
   headers() {
     console.log(this.store.state.jwt);
-    if (this.store.state.jwt) {
-      return {
-        Authorization: `Bearer ${this.store.state.jwt}`,
-      };
-    } else {
-      return {};
-    }
+    return {
+      Authorization: `Bearer ${this.store.state.jwt}`,
+    };
   }
 }
 
-export default HttpService;
+export default new HttpService();

@@ -3,7 +3,7 @@
     <div class="accordion" id="accordionExample">
       <div
         :key="request.id"
-        v-for="request in this.$store.state.apiVisualizer.apiRequests"
+        v-for="request in $store.state.apiVisualizer.apiRequests"
         class="accordion-item"
       >
         <h2 class="accordion-header" id="headingOne">
