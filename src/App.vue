@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <div class="container">
+  <div class="container-fluid">
     <div class="form-check form-switch">
       <input
         :checked="showApiRequests"
@@ -13,9 +13,9 @@
         >Show API Requests</label
       >
     </div>
+    <RouterView />
+    <ApiVisualizer v-show="showApiRequests" />
   </div>
-  <RouterView />
-  <ApiVisualizer v-show="showApiRequests" />
 </template>
 <script>
 import NavBar from "@/components/NavBar.vue";
@@ -30,7 +30,7 @@ export default {
     return {};
   },
   mounted() {
-    this.$store.commit("initialize");
+    this.$store.dispatch("initialize");
     document.body.setAttribute("id", "page-top");
   },
   computed: {
@@ -43,7 +43,7 @@ export default {
       this.showFlash = true;
     },
     toggleShowApiRequests() {
-      this.$store.commit("toggleApiVisualizer");
+      this.$store.dispatch("toggleApiVisualizer");
     },
   },
 };

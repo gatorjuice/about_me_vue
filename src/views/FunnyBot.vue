@@ -1,26 +1,28 @@
 <template>
-  <div class="container">
-    <h2>Funny Bot</h2>
-    <ul id="messages">
-      <li
-        v-for="message in this.$store.state.funnyBot.messages"
-        :key="message.id"
-      >
-        {{ message.body }}
-      </li>
-    </ul>
-    <form @submit.prevent="processForm">
-      <input
-        v-model="form.message"
-        type="text"
-        class="form-control"
-        id="message"
-        aria-describedby="message"
-        placeholder="Send message to Funny Bot"
-      />
-      <button>Send</button>
-    </form>
-  </div>
+  <h3>Funny Bot</h3>
+  <p>
+    When complete, Funny Bot will be a Web Sockets experiment utilizing Trello
+    API
+  </p>
+  <ul id="messages">
+    <li
+      v-for="message in this.$store.state.funnyBot.messages"
+      :key="message.id"
+    >
+      {{ message.body }}
+    </li>
+  </ul>
+  <form @submit.prevent="processForm">
+    <input
+      v-model="form.message"
+      type="text"
+      class="form-control"
+      id="message"
+      aria-describedby="message"
+      placeholder="Send message to Funny Bot"
+    />
+    <button>Send</button>
+  </form>
 </template>
 
 <script>

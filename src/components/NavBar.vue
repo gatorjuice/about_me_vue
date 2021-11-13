@@ -25,22 +25,22 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/movies" class="nav-link">Movies</router-link>
+          <router-link to="/repo_tracker" class="nav-link"
+            >Github Tracker</router-link
+          >
         </li>
         <li class="nav-item">
-          <router-link to="/maps" class="nav-link">Maps</router-link>
+          <router-link to="/movies" class="nav-link">Movie Search</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/books" class="nav-link">Books</router-link>
+          <router-link to="/books" class="nav-link">Favorite Books</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/maps" class="nav-link">Data Maps</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/funny_bot" class="nav-link"
             >FunnyBot AI</router-link
-          >
-        </li>
-        <li class="nav-item">
-          <router-link to="/repo_tracker" class="nav-link"
-            >Repo Tracker</router-link
           >
         </li>
       </ul>

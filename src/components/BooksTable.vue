@@ -10,7 +10,7 @@
     <tbody>
       <tr
         @click="toggleFavorite(book)"
-        v-for="book in books"
+        v-for="book in $store.state.books"
         :key="book.id"
         :data-test="`book${book.id}`"
       >
@@ -27,29 +27,19 @@
   </table>
 </template>
 <script>
-import HttpService from "@/services/HttpService.js";
-
 export default {
   name: "BooksTable",
-  props: {
-    books: {
-      type: Array,
-    },
+  created() {
+    this.$store.dispatch("loadBooks", this.$store.state.jwt);
   },
   methods: {
     toggleFavorite(book) {
+      const jwt = this.$store.state.jwt;
+
       if (book.is_favorite) {
-        new HttpService(this.$store).delete(`/user_books/${book.id}`, () => {
-          book.is_favorite = false;
-        });
+        this.$store.dispatch("removeFavoriteBook", { book, jwt });
       } else {
-        new HttpService(this.$store).post(
-          "/user_books",
-          { book_id: book.id },
-          () => {
-            book.is_favorite = true;
-          }
-        );
+        this.$store.dispatch("setFavoriteBook", { book, jwt });
       }
     },
   },

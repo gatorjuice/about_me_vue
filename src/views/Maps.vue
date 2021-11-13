@@ -1,16 +1,19 @@
 <template>
-  <div class="container">
-    <Map
-      :fills="{
-        HIGH: '#afafaf',
-        LOW: '#123456',
-        MEDIUM: 'blue',
-        UNKNOWN: 'rgb(0,0,0)',
-        defaultFill: 'green',
-      }"
-      scope="usa"
-    />
-  </div>
+  <h3>DataMaps</h3>
+  <p>
+    The DataMaps library was giving someone an issue so I attempted to implement
+    it myself. Nothing to really see here yet other than the map showing up.
+  </p>
+  <Map
+    :fills="{
+      HIGH: '#afafaf',
+      LOW: '#123456',
+      MEDIUM: 'blue',
+      UNKNOWN: 'rgb(0,0,0)',
+      defaultFill: 'green',
+    }"
+    scope="usa"
+  />
 </template>
 
 <script>

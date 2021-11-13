@@ -1,56 +1,56 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <select
-          v-model="category"
-          class="form-select"
-          aria-label="Category Select"
+  <h3>Github Tracker</h3>
+  <p>
+    The most complex undertaking in the project, this portion is also an effort
+    to learn Chart.js.
+  </p>
+  <div class="row">
+    <div class="col-sm-6">
+      <select
+        v-model="category"
+        class="form-select"
+        aria-label="Category Select"
+      >
+        <option value="all" selected>Select Category...</option>
+        <option
+          v-for="category in $store.state.categories"
+          :key="category"
+          :value="category"
         >
-          <option value="all" selected>Select Category...</option>
-          <option
-            v-for="category in categories"
-            :key="category"
-            :value="category"
-          >
-            {{ formattedCategory(category) }}
-          </option>
-        </select>
-      </div>
-      <div class="col-sm-6">
-        <select v-model="orderBy" class="form-select" aria-label="Sort By">
-          <option value="popularity_rating" selected>Popularity</option>
-          <option value="forks_count">Forks</option>
-          <option value="watchers_count">Watchers</option>
-          <option value="stargazers_count">Stargazers</option>
-        </select>
-      </div>
+          {{ formattedCategory(category) }}
+        </option>
+      </select>
     </div>
-    <RepoTrackerChart
-      v-if="filteredAndOrderedRepos.length"
-      :repos="filteredAndOrderedRepos"
-    />
-    <RepoTrackerTable
-      @changeOrder="handleChangeOrder"
-      v-if="filteredAndOrderedRepos.length"
-      :repos="filteredAndOrderedRepos"
-    />
+    <div class="col-sm-6">
+      <select v-model="orderBy" class="form-select" aria-label="Sort By">
+        <option value="popularity_rating" selected>Popularity</option>
+        <option value="forks_count">Forks</option>
+        <option value="watchers_count">Watchers</option>
+        <option value="stargazers_count">Stargazers</option>
+      </select>
+    </div>
   </div>
+  <RepoTrackerChart
+    v-if="filteredAndOrderedRepos.length"
+    :repos="filteredAndOrderedRepos"
+  />
+  <RepoTrackerTable
+    @changeOrder="handleChangeOrder"
+    v-if="filteredAndOrderedRepos.length"
+    :repos="filteredAndOrderedRepos"
+  />
 </template>
 <script>
 import RepoTrackerChart from "@/components/RepoTrackerChart.vue";
 import RepoTrackerTable from "@/components/RepoTrackerTable.vue";
-import HttpService from "@/services/HttpService.js";
 import textHelper from "@/mixins/textHelper.js";
 
 export default {
-  name: "Home",
+  name: "RepoTracker",
   mixins: [textHelper],
   data() {
     return {
-      categories: [],
       category: "all",
-      repos: [],
       orderBy: "popularity_rating",
     };
   },
@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     filteredAndOrderedRepos() {
-      return [...this.repos]
+      return [...this.$store.state.repos]
         .filter((repo) => {
           if (this.category !== "all") {
             return repo.category == this.category;
@@ -85,16 +85,8 @@ export default {
     RepoTrackerTable,
   },
   created() {
-    new HttpService(this.$store).get(`github_repos`, (status, response) => {
-      this.repos = response.data;
-      this.categories = [
-        ...new Set(
-          response.data.map((repo) => {
-            return repo.category;
-          })
-        ),
-      ];
-    });
+    this.$store.dispatch("clearRepos");
+    this.$store.dispatch("loadRepos");
   },
 };
 </script>
