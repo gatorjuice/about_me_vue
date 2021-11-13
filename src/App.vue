@@ -43,7 +43,7 @@ export default {
       this.showFlash = true;
     },
     toggleShowApiRequests() {
-      this.$store.commit("toggleApiVisualizer");
+      this.$store.dispatch("toggleApiVisualizer");
     },
   },
 };

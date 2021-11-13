@@ -85,6 +85,7 @@ export default {
     RepoTrackerTable,
   },
   created() {
+    this.$store.dispatch("clearRepos");
     this.$store.dispatch("loadRepos");
   },
 };

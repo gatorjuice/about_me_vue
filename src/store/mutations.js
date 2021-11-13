@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 const INITIALIZE = (state) => {
   state.storeReady = true;
 };
@@ -66,9 +68,17 @@ const TOGGLE_API_VISUALIZER = (state) => {
 };
 
 const ADD_API_REQUEST = (state, request) => {
+  console.log(request);
   state.apiVisualizer.apiRequests = [
+    {
+      id: uuidv4(),
+      url: request.url,
+      response: {
+        body: request.response.data,
+        status: request.response.status,
+      },
+    },
     ...state.apiVisualizer.apiRequests,
-    request,
   ];
 };
 

@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { v4 as uuidv4 } from "uuid";
 
 axios.defaults.baseURL = process.env.VUE_APP_ABOUT_ME_API_ENDPOINT;
 axios.defaults.timeout = process.env.VUE_APP_AXIOS_TIMEOUT;
