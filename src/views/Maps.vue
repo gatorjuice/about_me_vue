@@ -10,7 +10,7 @@
       LOW: '#123456',
       MEDIUM: 'blue',
       UNKNOWN: 'rgb(0,0,0)',
-      defaultFill: 'green',
+      defaultFill: '#bd5d38',
     }"
     scope="usa"
   />
