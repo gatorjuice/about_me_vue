@@ -7,6 +7,14 @@ class HttpService {
   constructor() {
     let service = axios.create();
 
+    service.interceptors.request.use((request) => {
+      const jwt = JSON.parse(localStorage.vuex)["jwt"];
+
+      if (jwt) request.headers.common.Authorization = `Bearer ${jwt}`;
+
+      return request;
+    });
+
     service.interceptors.response.use(this.handleSuccess, this.handleError);
 
     if (process.env.NODE_ENV === "development") {
@@ -20,6 +28,7 @@ class HttpService {
         return response;
       });
     }
+
     this.service = service;
   }
 
@@ -47,69 +56,22 @@ class HttpService {
     document.location = path;
   };
 
-  get(path, headers, callback) {
-    return this.service.get(path, { headers: headers }).then((response) => {
-      // this.store.commit("addApiRequest", {
-      //   id: uuidv4(),
-      //   url: `GET ${path}`,
-      //   response: {
-      //     body: response.data,
-      //     status: response.status,
-      //   },
-      // });
+  get(path, callback) {
+    return this.service.get(path).then((response) => {
       return callback(response.status, response.data);
     });
   }
 
-  delete(path, headers, callback) {
-    return this.service
-      .request({
-        method: "DELETE",
-        url: path,
-        responseType: "json",
-        headers: headers,
-      })
-      .then((response) => {
-        // this.store.commit("addApiRequest", {
-        //   id: uuidv4(),
-        //   url: `DELETE ${path}`,
-        //   response: {
-        //     body: response.data,
-        //     status: response.status,
-        //   },
-        // });
-        return callback(response.status, response.data);
-      });
+  delete(path, callback) {
+    return this.service.delete(path).then((response) => {
+      return callback(response.status, response.data);
+    });
   }
 
-  post(path, payload, headers, callback) {
-    return this.service
-      .request({
-        method: "POST",
-        url: path,
-        responseType: "json",
-        data: payload,
-        headers: headers,
-      })
-      .then((response) => {
-        // this.store.commit("addApiRequest", {
-        //   id: uuidv4(),
-        //   url: `POST ${path}`,
-        //   payload: payload,
-        //   response: {
-        //     body: response.data,
-        //     status: response.status,
-        //   },
-        // });
-        return callback(response.status, response.data);
-      });
-  }
-
-  headers() {
-    console.log(this.store.state.jwt);
-    return {
-      Authorization: `Bearer ${this.store.state.jwt}`,
-    };
+  post(path, payload, callback) {
+    return this.service.post(path, payload).then((response) => {
+      return callback(response.status, response.data);
+    });
   }
 }
 

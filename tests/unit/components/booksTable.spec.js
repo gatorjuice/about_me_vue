@@ -6,7 +6,7 @@ jest.mock("@/services/HttpService.js", () => ({
   delete: (path, callback) => callback(200, {}),
 }));
 
-describe("BooksTable", () => {
+xdescribe("BooksTable", () => {
   let wrapper;
 
   const books = [

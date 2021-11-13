@@ -34,12 +34,10 @@ export default {
   },
   methods: {
     toggleFavorite(book) {
-      const jwt = this.$store.state.jwt;
-
       if (book.is_favorite) {
-        this.$store.dispatch("removeFavoriteBook", { book, jwt });
+        this.$store.dispatch("removeFavoriteBook", book);
       } else {
-        this.$store.dispatch("setFavoriteBook", { book, jwt });
+        this.$store.dispatch("setFavoriteBook", book);
       }
     },
   },

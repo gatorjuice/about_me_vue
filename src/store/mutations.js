@@ -29,10 +29,10 @@ const SET_MESSAGES = (state, messages) => {
 };
 
 const CREATE_FAVORITE_BOOK = (state, book) => {
-  const existsAtIndex = state.books.findIndex((b) => b.id === book.id);
+  const index = state.books.findIndex((b) => b.id === book.id);
 
-  if (existsAtIndex !== -1) {
-    state.books[existsAtIndex].is_favorite = true;
+  if (index !== -1) {
+    state.books[index].is_favorite = true;
   } else {
     state.books.push(book);
   }
@@ -41,10 +41,10 @@ const CREATE_FAVORITE_BOOK = (state, book) => {
 };
 
 const DESTROY_FAVORITE_BOOK = (state, book) => {
-  const existsAtIndex = state.books.findIndex((b) => b.id === book.id);
+  const index = state.books.findIndex((b) => b.id === book.id);
 
-  if (existsAtIndex !== -1) {
-    state.books[existsAtIndex].is_favorite = false;
+  if (index !== -1) {
+    state.books[index].is_favorite = false;
   } else {
     state.books.push(book);
   }
@@ -68,7 +68,6 @@ const TOGGLE_API_VISUALIZER = (state) => {
 };
 
 const ADD_API_REQUEST = (state, request) => {
-  console.log(request);
   state.apiVisualizer.apiRequests = [
     {
       id: uuidv4(),
