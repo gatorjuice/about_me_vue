@@ -1,5 +1,7 @@
 <template>
-  <div id="dataMap"></div>
+  <div id="map-container">
+    <div id="data-map"></div>
+  </div>
 </template>
 
 <script>
@@ -21,7 +23,7 @@ export default {
   },
   mounted() {
     new Datamap({
-      element: document.getElementById("dataMap"),
+      element: document.getElementById("data-map"),
       scope: this.scope,
       fills: this.fills,
       data: this.data,
@@ -31,10 +33,15 @@ export default {
 </script>
 
 <style scoped>
-#dataMap {
+#map-container {
+  position: relative;
+  height: 500px;
+}
+#data-map {
+  height: 500px;
   display: block;
   vertical-align: middle;
-  margin: 0 auto 0 100px;
+  margin: auto;
   position: absolute;
   top: 5%;
   bottom: 5%;

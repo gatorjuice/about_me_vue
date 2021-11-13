@@ -1,12 +1,7 @@
 <template>
   <form
     class="row g-3"
-    @submit.prevent="
-      $store.dispatch('loadMovies', {
-        movieTitle: form.movieTitle,
-        jwt: $store.state.jwt,
-      })
-    "
+    @submit.prevent="$store.dispatch('loadMovies', form.movieTitle)"
   >
     <div class="col-auto">
       <label for="movieTitle" class="visually-hidden">Movie Title</label>

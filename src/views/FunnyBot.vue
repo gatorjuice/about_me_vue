@@ -13,15 +13,17 @@
     </li>
   </ul>
   <form @submit.prevent="processForm">
-    <input
-      v-model="form.message"
-      type="text"
-      class="form-control"
-      id="message"
-      aria-describedby="message"
-      placeholder="Send message to Funny Bot"
-    />
-    <button>Send</button>
+    <div class="mb-3">
+      <input
+        v-model="form.message"
+        type="text"
+        class="form-control"
+        id="inputPassword"
+        aria-describedby="message"
+        placeholder="Send message to Funny Bot"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
   </form>
 </template>
 
@@ -55,7 +57,7 @@ export default {
       } else if (msg.type === "confirm_subscription") {
         this.getMessages();
       } else {
-        this.$store.commit("setMessages", msg.message.funnyBotMessages);
+        this.$store.dispatch("setMessages", msg.message.funnyBotMessages);
       }
     };
   },
