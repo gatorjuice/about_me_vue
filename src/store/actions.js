@@ -12,7 +12,7 @@ const loadBooks = ({ commit }) => {
   commit("START_LOADING");
   return HttpService.get("books", (status, response) => {
     commit("ADD_API_REQUEST", {
-      url: "GET /books",
+      url: "GET /api/v1/books",
       response: {
         data: response,
         status,
@@ -35,7 +35,7 @@ const loadMovies = ({ commit }, movieTitle) => {
   commit("START_LOADING");
   return HttpService.get(`movies?title=${movieTitle}`, (status, response) => {
     commit("ADD_API_REQUEST", {
-      url: `GET movies?title=${movieTitle}`,
+      url: `GET /api/v1/movies?title=${movieTitle}`,
       response: { data: response, status },
     });
     commit("SET_MOVIES", response.data);
@@ -47,7 +47,7 @@ const loadRepos = ({ commit }) => {
   commit("START_LOADING");
   return HttpService.get(`github_repos`, (status, response) => {
     commit("ADD_API_REQUEST", {
-      url: "GET /github_repos",
+      url: "GET /api/v1/github_repos",
       response: { data: response, status },
     });
     commit("SET_REPOS", response.data);
@@ -65,7 +65,7 @@ const loadRepos = ({ commit }) => {
 const login = ({ commit }, { username, password }) => {
   HttpService.post(`login`, { username, password }, (status, response) => {
     commit("ADD_API_REQUEST", {
-      url: "POST /login",
+      url: "POST /api/v1/login",
       response: { data: response, status },
     });
     if (response.data.token) {
@@ -78,7 +78,7 @@ const login = ({ commit }, { username, password }) => {
 const removeFavoriteBook = ({ commit }, book) => {
   HttpService.delete(`/user_books/${book.id}`, (status, response) => {
     commit("ADD_API_REQUEST", {
-      url: `DELETE /user_books/${book.id}`,
+      url: `DELETE /api/v1/user_books/${book.id}`,
       response: { data: response, status },
     });
     commit("DESTROY_FAVORITE_BOOK", book);
@@ -88,7 +88,7 @@ const removeFavoriteBook = ({ commit }, book) => {
 const setFavoriteBook = ({ commit }, book) => {
   HttpService.post("/user_books", { book_id: book.id }, (status, response) => {
     commit("ADD_API_REQUEST", {
-      url: "POST /user_books",
+      url: "POST /api/v1/user_books",
       response: { data: response, status },
     });
     commit("CREATE_FAVORITE_BOOK", book);

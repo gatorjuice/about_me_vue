@@ -30,7 +30,11 @@
 
         <p>
           This web application is part personal portfolio and part open-ended
-          exercise to gain expertise in Vue.js.
+          exercise to gain expertise in Vue.js. Having worked mainly server-side
+          in my time as an engineer, I have always looked for a good client-side
+          counterpart to get excited about. ReactJS hasn't been able to do that
+          for me. Vue.js is sensical, approachable, and &#8212; my favorite part
+          &#8212; corporately detached.
         </p>
       </div>
       <div class="flex-shrink-0">
@@ -51,7 +55,7 @@
         <p>
           I have a much better understanding of Ruby on Rails so I'm using this
           backend to strive deeper with best practices and try out concepts I
-          don't get to work with that often.
+          don't get to work with that often. API is JSON ReST.
         </p>
       </div>
       <div class="flex-shrink-0">
