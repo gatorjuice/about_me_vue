@@ -16,4 +16,6 @@ jobs:
         with:
           node-version: "12"
       - run: yarn install
+      - run: yarn lint
+      - run: yarn audit --groups dependencies
       - run: yarn test:unit --coverage
