@@ -13,7 +13,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
             <p>{{ movie.summary }}</p>
-            <movie-search-modal :movie="movie" :modalId="modalId" />
+            <MovieSearchModal :movie="movie" :modalId="modalId" />
           </div>
         </div>
       </div>

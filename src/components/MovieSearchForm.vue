@@ -22,7 +22,7 @@
   </form>
   <div v-if="$store.state.movies" class="container">
     <div class="row">
-      <movie-search-card
+      <MovieSearchCard
         v-for="(movie, index) in $store.state.movies"
         :key="`movieCard${index}`"
         :movie="movie"

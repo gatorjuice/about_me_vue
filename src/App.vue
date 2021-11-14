@@ -1,5 +1,5 @@
 <template>
-  <nav-bar />
+  <TheNavBar />
   <div class="container-fluid">
     <div class="form-check form-switch">
       <input
@@ -13,17 +13,17 @@
         >Show API Requests</label
       >
     </div>
-    <router-view />
-    <api-visualizer v-show="showApiRequests" />
+    <RouterView />
+    <ApiVisualizer v-show="showApiRequests" />
   </div>
 </template>
 <script>
-import NavBar from "@/components/NavBar.vue";
+import TheNavBar from "@/components/TheNavBar.vue";
 import ApiVisualizer from "@/components/ApiVisualizer.vue";
 
 export default {
   components: {
-    NavBar,
+    TheNavBar,
     ApiVisualizer,
   },
   onError() {

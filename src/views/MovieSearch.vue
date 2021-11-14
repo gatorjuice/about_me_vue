@@ -5,7 +5,7 @@
     APIs so this interface you see here is made possible by scraping Box Office
     Mojo and packing the results like a real API.
   </p>
-  <movie-search-form />
+  <MovieSearchForm />
 </template>
 
 <script>

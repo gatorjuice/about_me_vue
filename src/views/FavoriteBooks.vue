@@ -6,7 +6,7 @@
     central store, which is now used throughout the app.
   </p>
   <h4>Favorites Count: {{ favoritesCount() }}</h4>
-  <favorite-books-table />
+  <FavoriteBooksTable />
 </template>
 
 <script>

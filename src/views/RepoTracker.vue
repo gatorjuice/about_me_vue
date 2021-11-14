@@ -30,11 +30,11 @@
       </select>
     </div>
   </div>
-  <repo-tracker-chart
+  <RepoTrackerChart
     v-if="filteredAndOrderedRepos.length"
     :repos="filteredAndOrderedRepos"
   />
-  <repo-tracker-table
+  <RepoTrackerTable
     @changeOrder="handleChangeOrder"
     v-if="filteredAndOrderedRepos.length"
     :repos="filteredAndOrderedRepos"

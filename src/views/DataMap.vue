@@ -4,7 +4,7 @@
     The DataMaps library was giving someone an issue so I attempted to implement
     it myself. Nothing to really see here yet other than the map showing up.
   </p>
-  <data-map-container
+  <DataMapContainer
     :fills="{
       HIGH: '#afafaf',
       LOW: '#123456',
