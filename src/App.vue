@@ -14,17 +14,17 @@
       >
     </div>
     <RouterView />
-    <ApiVisualizer v-show="showApiRequests" />
+    <TheApiVisualizer v-show="showApiRequests" />
   </div>
 </template>
 <script>
 import TheNavBar from "@/components/TheNavBar.vue";
-import ApiVisualizer from "@/components/ApiVisualizer.vue";
+import TheApiVisualizer from "@/components/TheApiVisualizer.vue";
 
 export default {
   components: {
     TheNavBar,
-    ApiVisualizer,
+    TheApiVisualizer,
   },
   onError() {
     return {};
@@ -43,7 +43,7 @@ export default {
       this.showFlash = true;
     },
     toggleShowApiRequests() {
-      this.$store.dispatch("toggleApiVisualizer");
+      this.$store.dispatch("toggleTheApiVisualizer");
     },
   },
 };

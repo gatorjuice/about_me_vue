@@ -1,12 +1,12 @@
 import { shallowMount } from "@vue/test-utils";
-import MovieCard from "@/components/MovieCard.vue";
+import MovieSearchCard from "@/components/MovieSearchCard.vue";
 
-xdescribe("MovieCard.vue", () => {
+xdescribe("MovieSearchCard.vue", () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = undefined;
-    wrapper = shallowMount(MovieCard, {
+    wrapper = shallowMount(MovieSearchCard, {
       props: {
         movie: {
           title: "The 'Burbs (1989)",

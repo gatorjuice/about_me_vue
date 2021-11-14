@@ -26,7 +26,7 @@
         v-for="(movie, index) in $store.state.movies"
         :key="`movieCard${index}`"
         :movie="movie"
-        :modalId="`movieCard${index}`"
+        :modal-id="`movieCard${index}`"
       />
     </div>
   </div>

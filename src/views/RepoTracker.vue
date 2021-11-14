@@ -35,7 +35,7 @@
     :repos="filteredAndOrderedRepos"
   />
   <RepoTrackerTable
-    @changeOrder="handleChangeOrder"
+    @change-order="handleChangeOrder"
     v-if="filteredAndOrderedRepos.length"
     :repos="filteredAndOrderedRepos"
   />
