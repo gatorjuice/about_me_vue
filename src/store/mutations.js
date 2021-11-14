@@ -33,8 +33,6 @@ const CREATE_FAVORITE_BOOK = (state, book) => {
 
   if (index !== -1) {
     state.books[index].is_favorite = true;
-  } else {
-    state.books.push(book);
   }
 
   state.books = [...state.books];
@@ -45,8 +43,6 @@ const DESTROY_FAVORITE_BOOK = (state, book) => {
 
   if (index !== -1) {
     state.books[index].is_favorite = false;
-  } else {
-    state.books.push(book);
   }
 
   state.books = [...state.books];

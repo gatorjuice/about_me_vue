@@ -68,6 +68,7 @@ const login = ({ commit }, { username, password }) => {
       url: "POST /api/v1/login",
       response: { data: response, status },
     });
+
     if (response.data.token) {
       commit("SET_TOKEN", response.data.token);
       document.location = "/";
