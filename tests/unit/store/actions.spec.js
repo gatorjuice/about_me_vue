@@ -20,9 +20,9 @@ describe("actions", () => {
     });
   });
 
-  describe("toggleApiVisualizer", () => {
-    test("toggleApiVisualizer calls commit with TOGGLE_API_VISUALIZER", () => {
-      actions.toggleApiVisualizer({ commit });
+  describe("toggleTheApiVisualizer", () => {
+    test("toggleTheApiVisualizer calls commit with TOGGLE_API_VISUALIZER", () => {
+      actions.toggleTheApiVisualizer({ commit });
 
       expect(commit).toHaveBeenCalledWith("TOGGLE_API_VISUALIZER");
     });
