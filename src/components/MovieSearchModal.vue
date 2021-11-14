@@ -64,7 +64,7 @@
 
 <script>
 export default {
-  name: "MovieModal",
+  name: "MovieSearchModal",
   props: {
     movie: {
       type: Object,

@@ -4,7 +4,7 @@
     The DataMaps library was giving someone an issue so I attempted to implement
     it myself. Nothing to really see here yet other than the map showing up.
   </p>
-  <Map
+  <DataMapContainer
     :fills="{
       HIGH: '#afafaf',
       LOW: '#123456',
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import Map from "@/components/Map.vue";
+import DataMapContainer from "@/components/DataMapContainer.vue";
 
 export default {
   name: "Movies",
   components: {
-    Map,
+    DataMapContainer,
   },
 };
 </script>

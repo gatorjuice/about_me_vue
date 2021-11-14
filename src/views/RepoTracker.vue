@@ -22,7 +22,7 @@
       </select>
     </div>
     <div class="col-sm-6">
-      <select v-model="orderBy" class="form-select" aria-label="Sort By">
+      <select v-model="sortedBy" class="form-select" aria-label="Sort By">
         <option value="popularity_rating" selected>Popularity</option>
         <option value="forks_count">Forks</option>
         <option value="watchers_count">Watchers</option>
@@ -35,7 +35,8 @@
     :repos="filteredAndOrderedRepos"
   />
   <RepoTrackerTable
-    @changeOrder="handleChangeOrder"
+    @change-sorted-by="handleChangeSortedBy"
+    @toggle-order="handleToggleOrder"
     v-if="filteredAndOrderedRepos.length"
     :repos="filteredAndOrderedRepos"
   />
@@ -51,12 +52,22 @@ export default {
   data() {
     return {
       category: "all",
-      orderBy: "popularity_rating",
+      sortedBy: "popularity_rating",
+      order: "dec",
     };
   },
   methods: {
-    handleChangeOrder(orderBy) {
-      this.orderBy = orderBy;
+    handleChangeSortedBy(sortedBy) {
+      this.sortedBy = sortedBy;
+    },
+    handleToggleOrder() {
+      if (this.order === "dec") {
+        this.order = "asc";
+      } else if (this.order === "asc") {
+        this.order = "dec";
+      } else {
+        this.order = "dec";
+      }
     },
     formattedCategory(category) {
       return category
@@ -64,20 +75,28 @@ export default {
         .map((word) => this.capitalizeWord(word))
         .join(" ");
     },
+    filteredRepos(repos) {
+      return repos.filter((repo) => {
+        if (this.category !== "all") {
+          return repo.category == this.category;
+        } else {
+          return true;
+        }
+      });
+    },
+    sortedRepos(repos) {
+      return repos.sort((a, b) => {
+        if (this.order === "dec") {
+          return b[this.sortedBy] - a[this.sortedBy];
+        } else if (this.order === "asc") {
+          return a[this.sortedBy] - b[this.sortedBy];
+        }
+      });
+    },
   },
   computed: {
     filteredAndOrderedRepos() {
-      return [...this.$store.state.repos]
-        .filter((repo) => {
-          if (this.category !== "all") {
-            return repo.category == this.category;
-          } else {
-            return true;
-          }
-        })
-        .sort((a, b) => {
-          return b[this.orderBy] - a[this.orderBy];
-        });
+      return this.sortedRepos(this.filteredRepos(this.$store.state.repos));
     },
   },
   components: {

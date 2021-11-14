@@ -1,45 +1,48 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-const Home = () => import(/* webpackChunkName: "home" */ "@/views/Home.vue");
-const Movies = () =>
-  import(/* webpackChunkName: "movies" */ "@/views/Movies.vue");
-const Maps = () => import(/* webpackChunkName: "maps" */ "@/views/Maps.vue");
-const Books = () => import(/* webpackChunkName: "books" */ "@/views/Books.vue");
+const LandingPage = () =>
+  import(/* webpackChunkName: "home" */ "@/views/LandingPage.vue");
+const MovieSearch = () =>
+  import(/* webpackChunkName: "movies" */ "@/views/MovieSearch.vue");
+const DataMap = () =>
+  import(/* webpackChunkName: "maps" */ "@/views/DataMap.vue");
+const FavoriteBooks = () =>
+  import(/* webpackChunkName: "books" */ "@/views/FavoriteBooks.vue");
 const FunnyBot = () =>
   import(/* webpackChunkName: "books" */ "@/views/FunnyBot.vue");
 const RepoTracker = () =>
   import(/* webpackChunkName: "repoTracker" */ "@/views/RepoTracker.vue");
-const Login = () =>
-  import(/* webpackChunkName: "repoTracker" */ "@/views/Login.vue");
+const LoginPage = () =>
+  import(/* webpackChunkName: "repoTracker" */ "@/views/LoginPage.vue");
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "LandingPage",
+    component: LandingPage,
   },
   {
     path: "/login",
-    name: "Login",
-    component: Login,
+    name: "LoginPage",
+    component: LoginPage,
   },
   {
     path: "/movies",
-    name: "Movies",
-    component: Movies,
+    name: "MovieSearch",
+    component: MovieSearch,
     meta: {
       requiresAuth: true,
     },
   },
   {
     path: "/maps",
-    name: "Maps",
-    component: Maps,
+    name: "DataMap",
+    component: DataMap,
   },
   {
     path: "/books",
-    name: "Books",
-    component: Books,
+    name: "FavoriteBooks",
+    component: FavoriteBooks,
     meta: {
       requiresAuth: true,
     },
@@ -75,7 +78,7 @@ router.beforeEach((to, from, next) => {
     const loggedIn = vuex["jwt"];
 
     if (!loggedIn) {
-      next({ name: "Login" });
+      next({ name: "LoginPage" });
     } else {
       next();
     }

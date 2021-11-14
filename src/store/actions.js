@@ -4,7 +4,7 @@ const initialize = ({ commit }) => {
   commit("INITIALIZE");
 };
 
-const toggleApiVisualizer = ({ commit }) => {
+const toggleTheApiVisualizer = ({ commit }) => {
   commit("TOGGLE_API_VISUALIZER");
 };
 
@@ -111,5 +111,5 @@ export default {
   removeFavoriteBook,
   setFavoriteBook,
   setMessages,
-  toggleApiVisualizer,
+  toggleTheApiVisualizer,
 };

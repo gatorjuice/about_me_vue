@@ -22,21 +22,21 @@
   </form>
   <div v-if="$store.state.movies" class="container">
     <div class="row">
-      <MovieCard
+      <MovieSearchCard
         v-for="(movie, index) in $store.state.movies"
         :key="`movieCard${index}`"
         :movie="movie"
-        :modalId="`movieCard${index}`"
+        :modal-id="`movieCard${index}`"
       />
     </div>
   </div>
 </template>
 <script>
-import MovieCard from "@/components/MovieCard.vue";
+import MovieSearchCard from "@/components/MovieSearchCard.vue";
 
 export default {
   name: "MovieSearch",
-  components: { MovieCard },
+  components: { MovieSearchCard },
   data() {
     return { form: { movieTitle: "" } };
   },
