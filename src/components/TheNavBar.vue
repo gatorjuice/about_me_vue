@@ -49,7 +49,7 @@
 </template>
 <script>
 export default {
-  name: "NavBar",
+  name: "TheNavBar",
 };
 </script>
 <style scoped></style>

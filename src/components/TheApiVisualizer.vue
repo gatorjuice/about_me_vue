@@ -38,7 +38,7 @@
 </template>
 <script>
 export default {
-  name: "ApiVisualizer",
+  name: "TheApiVisualizer",
 };
 </script>
 <style scoped>

@@ -1,16 +1,34 @@
 <template>
-  <table class="table table-success table-striped">
+  <table class="table table-striped table-sm">
     <thead>
       <tr>
-        <th scope="col">Project</th>
-        <th scope="col" @click="$emit('changeOrder', 'forks_count')">Forks</th>
-        <th scope="col" @click="$emit('changeOrder', 'stargazers_count')">
+        <th scope="col" @click="$emit('toggleOrder')">Project</th>
+        <th
+          scope="col"
+          @click="$emit('changeSortedBy', 'forks_count')"
+          class="text-end"
+        >
+          Forks
+        </th>
+        <th
+          scope="col"
+          @click="$emit('changeSortedBy', 'stargazers_count')"
+          class="text-end"
+        >
           Stargazers
         </th>
-        <th scope="col" @click="$emit('changeOrder', 'watchers_count')">
+        <th
+          scope="col"
+          @click="$emit('changeSortedBy', 'watchers_count')"
+          class="text-end"
+        >
           Watchers
         </th>
-        <th scope="col" @click="$emit('changeOrder', 'popularity_rating')">
+        <th
+          scope="col"
+          @click="$emit('changeSortedBy', 'popularity_rating')"
+          class="text-end"
+        >
           Popularity
         </th>
       </tr>
@@ -18,10 +36,10 @@
     <tbody>
       <tr v-for="repo in repos" :key="repo.id" :data-test="`repo${repo.id}`">
         <td>{{ repo.name }}</td>
-        <td>{{ repo.forks_count }}</td>
-        <td>{{ repo.stargazers_count }}</td>
-        <td>{{ repo.watchers_count }}</td>
-        <td>{{ repo.popularity_rating }}</td>
+        <td class="text-end">{{ formatInteger(repo.forks_count) }}</td>
+        <td class="text-end">{{ formatInteger(repo.stargazers_count) }}</td>
+        <td class="text-end">{{ formatInteger(repo.watchers_count) }}</td>
+        <td class="text-end">{{ formatInteger(repo.popularity_rating) }}</td>
       </tr>
     </tbody>
   </table>
@@ -32,6 +50,11 @@ export default {
   props: {
     repos: {
       type: Array,
+    },
+  },
+  methods: {
+    formatInteger(integer) {
+      return integer.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
 };

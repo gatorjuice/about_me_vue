@@ -1,12 +1,12 @@
 import { mount } from "@vue/test-utils";
-import BooksTable from "@/components/BooksTable.vue";
+import FavoriteBooksTable from "@/components/FavoriteBooksTable.vue";
 
 jest.mock("@/services/HttpService.js", () => ({
   post: (path, payload, callback) => callback(200, {}),
   delete: (path, callback) => callback(200, {}),
 }));
 
-xdescribe("BooksTable", () => {
+xdescribe("FavoriteBooksTable", () => {
   let wrapper;
 
   const books = [
@@ -28,7 +28,7 @@ xdescribe("BooksTable", () => {
 
   beforeEach(() => {
     wrapper = undefined;
-    wrapper = mount(BooksTable, { props });
+    wrapper = mount(FavoriteBooksTable, { props });
   });
 
   it("does a wrapper exist", () => {

@@ -13,7 +13,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
             <p>{{ movie.summary }}</p>
-            <MovieModal :movie="movie" :modalId="modalId" />
+            <MovieSearchModal :movie="movie" :modal-id="modalId" />
           </div>
         </div>
       </div>
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import MovieModal from "@/components/MovieModal.vue";
+import MovieSearchModal from "@/components/MovieSearchModal.vue";
 
 export default {
   components: {
-    MovieModal,
+    MovieSearchModal,
   },
   name: "MovieCard",
   props: {
