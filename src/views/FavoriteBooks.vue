@@ -6,16 +6,16 @@
     central store, which is now used throughout the app.
   </p>
   <h4>Favorites Count: {{ favoritesCount() }}</h4>
-  <BooksTable />
+  <favorite-books-table />
 </template>
 
 <script>
-import BooksTable from "@/components/BooksTable.vue";
+import FavoriteBooksTable from "@/components/FavoriteBooksTable.vue";
 
 export default {
   name: "Books",
   components: {
-    BooksTable,
+    FavoriteBooksTable,
   },
   methods: {
     favoritesCount() {

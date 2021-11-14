@@ -1,5 +1,5 @@
 <template>
-  <NavBar />
+  <nav-bar />
   <div class="container-fluid">
     <div class="form-check form-switch">
       <input
@@ -13,8 +13,8 @@
         >Show API Requests</label
       >
     </div>
-    <RouterView />
-    <ApiVisualizer v-show="showApiRequests" />
+    <router-view />
+    <api-visualizer v-show="showApiRequests" />
   </div>
 </template>
 <script>

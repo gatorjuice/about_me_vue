@@ -5,16 +5,16 @@
     APIs so this interface you see here is made possible by scraping Box Office
     Mojo and packing the results like a real API.
   </p>
-  <MovieSearch />
+  <movie-search-form />
 </template>
 
 <script>
-import MovieSearch from "@/components/MovieSearch.vue";
+import MovieSearchForm from "@/components/MovieSearchForm.vue";
 
 export default {
   name: "Movies",
   components: {
-    MovieSearch,
+    MovieSearchForm,
   },
 };
 </script>
