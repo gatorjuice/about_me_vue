@@ -1,19 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { decode } from "jsonwebtoken";
 
 const LandingPage = () =>
-  import(/* webpackChunkName: "home" */ "@/views/LandingPage.vue");
+  import(/* webpackChunkName: "landingPage" */ "@/views/LandingPage.vue");
 const MovieSearch = () =>
-  import(/* webpackChunkName: "movies" */ "@/views/MovieSearch.vue");
+  import(/* webpackChunkName: "movieSearch" */ "@/views/MovieSearch.vue");
 const DataMap = () =>
-  import(/* webpackChunkName: "maps" */ "@/views/DataMap.vue");
+  import(/* webpackChunkName: "dataMap" */ "@/views/DataMap.vue");
 const FavoriteBooks = () =>
-  import(/* webpackChunkName: "books" */ "@/views/FavoriteBooks.vue");
+  import(/* webpackChunkName: "favoriteBooks" */ "@/views/FavoriteBooks.vue");
 const FunnyBot = () =>
-  import(/* webpackChunkName: "books" */ "@/views/FunnyBot.vue");
+  import(/* webpackChunkName: "funnyBot" */ "@/views/FunnyBot.vue");
 const RepoTracker = () =>
   import(/* webpackChunkName: "repoTracker" */ "@/views/RepoTracker.vue");
 const LoginPage = () =>
-  import(/* webpackChunkName: "repoTracker" */ "@/views/LoginPage.vue");
+  import(/* webpackChunkName: "loginPage" */ "@/views/LoginPage.vue");
 
 const routes = [
   {
@@ -74,10 +75,13 @@ router.beforeEach((to, from, next) => {
   // trying to access a restricted page + not logged in
   // redirect to login page
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    const vuex = JSON.parse(localStorage.getItem("vuex"));
-    const loggedIn = vuex["jwt"];
+    const jwt = JSON.parse(localStorage.getItem("vuex"))["jwt"];
+    const decodedJwt = decode(jwt);
 
-    if (!loggedIn) {
+    console.log(jwt, new Date() / 1000);
+    if (!jwt) {
+      next({ name: "LoginPage" });
+    } else if (decodedJwt.exp < new Date() / 1000) {
       next({ name: "LoginPage" });
     } else {
       next();
