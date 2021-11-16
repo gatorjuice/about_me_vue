@@ -1,6 +1,7 @@
 import HttpService from "@/services/HttpService.js";
 
 const initialize = ({ commit }) => {
+  commit("STOP_LOADING");
   commit("INITIALIZE");
 };
 
