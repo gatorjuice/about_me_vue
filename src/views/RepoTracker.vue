@@ -44,11 +44,11 @@
 <script>
 import RepoTrackerChart from "@/components/RepoTrackerChart.vue";
 import RepoTrackerTable from "@/components/RepoTrackerTable.vue";
-import textHelper from "@/mixins/textHelper.js";
+import textMixin from "@/mixins/textMixin.js";
 
 export default {
   name: "RepoTracker",
-  mixins: [textHelper],
+  mixins: [textMixin],
   data() {
     return {
       category: "all",
@@ -72,7 +72,7 @@ export default {
     formattedCategory(category) {
       return category
         .split("_")
-        .map((word) => this.capitalizeWord(word))
+        .map((word) => this.$_textMixin_capitalizeWord(word))
         .join(" ");
     },
     filteredRepos(repos) {
