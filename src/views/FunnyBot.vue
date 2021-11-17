@@ -23,15 +23,22 @@
         placeholder="Send message to Funny Bot"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Send</button>
+    <SubmitButton
+      fixed-text="Send"
+      :bootstrap-classes="['btn', 'btn-primary']"
+    />
   </form>
 </template>
 
 <script>
+import SubmitButton from "@/components/SubmitButton";
 const CHANNEL = "FunnyBotChannel";
 
 export default {
   name: "FunnyBot",
+  components: {
+    SubmitButton,
+  },
   data() {
     return {
       form: {

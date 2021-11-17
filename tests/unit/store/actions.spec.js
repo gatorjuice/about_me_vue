@@ -173,6 +173,14 @@ describe("actions", () => {
         actions.login({ commit }, { username: "test", password: "password" });
       });
 
+      test("loadRepos calls commit with START_LOADING", () => {
+        expect(commit).toHaveBeenCalledWith("START_LOADING");
+      });
+
+      test("loadRepos calls commit with STOP_LOADING", () => {
+        expect(commit).toHaveBeenCalledWith("STOP_LOADING");
+      });
+
       test("login calls commit with ADD_API_REQUEST", async () => {
         expect(commit).toHaveBeenCalledWith("ADD_API_REQUEST", {
           response: {

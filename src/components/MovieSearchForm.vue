@@ -14,9 +14,11 @@
           aria-describedby="movieTitle"
           placeholder="Enter Movie Title"
         />
-        <button type="submit" class="btn btn-outline-secondary">
-          {{ $store.state.loading ? "Loading..." : "Submit" }}
-        </button>
+        <SubmitButton
+          fixed-text="Submit"
+          loading-text="Loading..."
+          :bootstrap-classes="['btn', 'btn-primary']"
+        />
       </div>
     </div>
   </form>
@@ -33,10 +35,11 @@
 </template>
 <script>
 import MovieSearchCard from "@/components/MovieSearchCard.vue";
+import SubmitButton from "@/components/SubmitButton.vue";
 
 export default {
   name: "MovieSearch",
-  components: { MovieSearchCard },
+  components: { MovieSearchCard, SubmitButton },
   data() {
     return { form: { movieTitle: "" } };
   },
