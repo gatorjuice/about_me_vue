@@ -64,7 +64,9 @@ const loadRepos = ({ commit }) => {
 };
 
 const login = ({ commit }, { username, password }) => {
+  commit("START_LOADING");
   HttpService.post(`login`, { username, password }, (status, response) => {
+    commit("STOP_LOADING");
     commit("ADD_API_REQUEST", {
       url: "POST /api/v1/login",
       response: { data: response, status },

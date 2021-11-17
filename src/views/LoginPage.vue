@@ -33,11 +33,20 @@
         Passwords are stored encrypted.
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <SubmitButton
+      fixed-text="Sign in"
+      loading-text="Please wait..."
+      :bootstrap-classes="['btn', 'btn-primary']"
+    />
   </form>
 </template>
 <script>
+import SubmitButton from "@/components/SubmitButton.vue";
+
 export default {
+  components: {
+    SubmitButton,
+  },
   data() {
     return {
       username: "demo_user@test.com",
