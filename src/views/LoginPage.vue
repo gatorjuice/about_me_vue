@@ -4,6 +4,7 @@
       $store.dispatch('login', {
         username,
         password,
+        redirectTo: this.$route.query.nextUrl,
       })
     "
   >

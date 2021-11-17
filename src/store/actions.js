@@ -63,7 +63,7 @@ const loadRepos = ({ commit }) => {
   });
 };
 
-const login = ({ commit }, { username, password }) => {
+const login = ({ commit }, { username, password, redirectTo = "/" }) => {
   commit("START_LOADING");
   HttpService.post(`login`, { username, password }, (status, response) => {
     commit("STOP_LOADING");
@@ -74,7 +74,7 @@ const login = ({ commit }, { username, password }) => {
 
     if (response.data.token) {
       commit("SET_TOKEN", response.data.token);
-      document.location = "/";
+      document.location = redirectTo;
     }
   });
 };
