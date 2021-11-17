@@ -78,11 +78,20 @@ router.beforeEach((to, from, next) => {
     const jwt = JSON.parse(localStorage.getItem("vuex"))["jwt"];
     const decodedJwt = decode(jwt);
 
-    console.log(jwt, new Date() / 1000);
     if (!jwt) {
-      next({ name: "LoginPage" });
+      next({
+        name: "LoginPage",
+        query: {
+          nextUrl: to.fullPath,
+        },
+      });
     } else if (decodedJwt.exp < new Date() / 1000) {
-      next({ name: "LoginPage" });
+      next({
+        name: "LoginPage",
+        query: {
+          nextUrl: to.fullPath,
+        },
+      });
     } else {
       next();
     }
