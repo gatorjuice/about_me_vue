@@ -83,8 +83,9 @@ describe("actions", () => {
     });
     test("loadMovies calls commit with ADD_API_REQUEST", () => {
       expect(commit).toHaveBeenCalledWith("ADD_API_REQUEST", {
-        response: { data: { data: [] }, status: 200 },
         url: "GET /api/v1/movies?title=the burbs",
+        response: { data: [] },
+        status: 200,
       });
     });
     test("loadMovies calls commit with SET_MOVIES", () => {
@@ -121,9 +122,7 @@ describe("actions", () => {
 
     beforeEach(() => {
       httpService.get.mockImplementation((_, callback) =>
-        callback(200, {
-          data: repos,
-        })
+        callback(200, { data: repos })
       );
       actions.loadRepos({ commit }, "the burbs");
     });
@@ -133,13 +132,9 @@ describe("actions", () => {
     });
     test("loadRepos calls commit with ADD_API_REQUEST", () => {
       expect(commit).toHaveBeenCalledWith("ADD_API_REQUEST", {
-        response: {
-          data: {
-            data: repos,
-          },
-          status: 200,
-        },
         url: "GET /api/v1/github_repos",
+        response: { data: repos },
+        status: 200,
       });
     });
     test("loadRepos calls commit with SET_CATEGORIES", () => {
@@ -184,21 +179,19 @@ describe("actions", () => {
 
       test("login calls commit with ADD_API_REQUEST", async () => {
         expect(commit).toHaveBeenCalledWith("ADD_API_REQUEST", {
+          url: "POST /api/v1/login",
           response: {
             data: {
-              data: {
-                user: {
-                  username: "demo_user@test.com",
-                  age: 30,
-                  favorites: [],
-                },
-                token: "imatoken",
+              user: {
+                username: "demo_user@test.com",
+                age: 30,
+                favorites: [],
               },
-              errors: [],
+              token: "imatoken",
             },
-            status: 200,
+            errors: [],
           },
-          url: "POST /api/v1/login",
+          status: 200,
         });
       });
       test("login calls commit with ADD_TOKEN", async () => {
@@ -238,18 +231,16 @@ describe("actions", () => {
 
     test("removeFavoriteBook calls commit with ADD_API_REQUEST", () => {
       expect(commit).toHaveBeenCalledWith("ADD_API_REQUEST", {
+        url: "DELETE /api/v1/user_books/1",
         response: {
           data: {
-            data: {
-              book_id: 2,
-              id: 12,
-              user_id: 3,
-            },
-            errors: [],
+            book_id: 2,
+            id: 12,
+            user_id: 3,
           },
-          status: 200,
+          errors: [],
         },
-        url: "DELETE /api/v1/user_books/1",
+        status: 200,
       });
     });
     test("removeFavoriteBook calls commit with DESTROY_FAVORITE_BOOK", () => {
@@ -274,21 +265,19 @@ describe("actions", () => {
 
     test("setFavoriteBook calls commit with ADD_API_REQUEST", () => {
       expect(commit).toHaveBeenCalledWith("ADD_API_REQUEST", {
+        url: "POST /api/v1/user_books",
         response: {
           data: {
-            data: {
-              token: "imatoken",
-              user: {
-                age: 30,
-                favorites: [],
-                username: "demo_user@test.com",
-              },
+            token: "imatoken",
+            user: {
+              age: 30,
+              favorites: [],
+              username: "demo_user@test.com",
             },
-            errors: [],
           },
-          status: 200,
+          errors: [],
         },
-        url: "POST /api/v1/user_books",
+        status: 200,
       });
     });
     test("setFavoriteBook calls commit with CREATE_FAVORITE_BOOK", () => {
