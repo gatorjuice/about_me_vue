@@ -2,50 +2,34 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col"></th>
+        <th scope="col"><i class="fas fa-star unchecked"></i></th>
         <th scope="col">Title</th>
         <th scope="col">Author</th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        @click="toggleFavorite(book)"
-        v-for="book in $store.state.books"
+      <FavoriteBooksRow
+        v-for="book in books"
+        :book="book"
         :key="book.id"
         :data-test="`book${book.id}`"
-      >
-        <td v-if="book.is_favorite">
-          <i class="fas fa-star checked"></i>
-        </td>
-        <td v-else>
-          <i class="fas fa-star unchecked"></i>
-        </td>
-        <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
-      </tr>
+      />
     </tbody>
   </table>
 </template>
 <script>
+import FavoriteBooksRow from "@/components/FavoriteBooksRow";
+
 export default {
   name: "BooksTable",
-  created() {
-    this.$store.dispatch("loadBooks", this.$store.state.jwt);
-  },
-  methods: {
-    toggleFavorite(book) {
-      if (book.is_favorite) {
-        this.$store.dispatch("removeFavoriteBook", book);
-      } else {
-        this.$store.dispatch("setFavoriteBook", book);
-      }
+  components: { FavoriteBooksRow },
+  computed: {
+    books() {
+      return this.$store.state.books;
     },
+  },
+  created() {
+    this.$store.dispatch("loadBooks");
   },
 };
 </script>
-<style>
-.checked {
-  color: orange;
-  unchecked: black;
-}
-</style>

@@ -1,18 +1,22 @@
 <template>
   <div class="container col-md-6">
-    <div class="card mb-3">
+    <div
+      data-bs-toggle="modal"
+      :data-bs-target="`#${modalId}`"
+      class="card mb-3"
+    >
       <div class="row g-0">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <img
             :src="movie.image"
             class="card-img"
             :alt="`${movie.title} poster`"
           />
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
-            <p>{{ movie.summary }}</p>
+            <p>Director: {{ movie.crew["Director"] }}</p>
             <MovieSearchModal :movie="movie" :modal-id="modalId" />
           </div>
         </div>
@@ -49,5 +53,9 @@ export default {
 <style scoped>
 .card {
   max-width: 540px;
+}
+img {
+  max-width: 92px;
+  max-height: 139px;
 }
 </style>

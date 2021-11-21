@@ -1,13 +1,4 @@
 <template>
-  <button
-    type="button"
-    class="btn btn-primary"
-    data-bs-toggle="modal"
-    @click="handleLog"
-    :data-bs-target="`#${modalId}`"
-  >
-    Show Details
-  </button>
   <div
     class="modal fade"
     :id="modalId"
@@ -31,20 +22,20 @@
           <p>
             <span><strong>Director: </strong></span>{{ movie.crew["Director"] }}
           </p>
-          <div v-for="perf in movie.performance" v-bind:key="perf">
+          <div v-for="perf in movie.performance" :key="perf">
             <h5>{{ perf.region }}</h5>
             <p>{{ perf.money }}</p>
           </div>
           <h5>Cast</h5>
-          <p v-for="(cast, role) in movie.cast" v-bind:key="cast">
+          <p v-for="(cast, role) in movie.cast" :key="cast">
             {{ role }}: {{ cast }}
           </p>
           <h5>Crew</h5>
-          <p v-for="(crew, role) in movie.crew" v-bind:key="crew">
+          <p v-for="(crew, role) in movie.crew" :key="crew">
             {{ role }}: {{ crew }}
           </p>
           <h5>Other Details</h5>
-          <p v-for="(misc, role) in movie.misc" v-bind:key="misc">
+          <p v-for="(misc, role) in movie.misc" :key="misc">
             {{ role }}: {{ misc }}
           </p>
         </div>
