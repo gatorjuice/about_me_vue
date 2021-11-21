@@ -1,5 +1,6 @@
 <template>
   <nav
+    @click="collapseNavbar"
     class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
     id="sideNav"
   >
@@ -48,8 +49,14 @@
   </nav>
 </template>
 <script>
+import { Collapse } from "bootstrap";
 export default {
   name: "TheNavBar",
+  methods: {
+    collapseNavbar() {
+      new Collapse(document.getElementById("navbarResponsive"));
+    },
+  },
 };
 </script>
 <style scoped></style>
