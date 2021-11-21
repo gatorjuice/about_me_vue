@@ -22,7 +22,11 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <div
+      @click="collapseNavbar"
+      class="collapse navbar-collapse"
+      id="navbarResponsive"
+    >
       <ul class="navbar-nav">
         <li class="nav-item">
           <router-link to="/repo_tracker" class="nav-link"
@@ -48,8 +52,14 @@
   </nav>
 </template>
 <script>
+import { Collapse } from "bootstrap";
 export default {
   name: "TheNavBar",
+  methods: {
+    collapseNavbar() {
+      new Collapse(document.getElementById("navbarResponsive"));
+    },
+  },
 };
 </script>
 <style scoped></style>
