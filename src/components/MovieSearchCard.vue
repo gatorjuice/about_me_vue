@@ -7,14 +7,14 @@
     >
       <MovieSearchModal :movie="movie" :modal-id="modalId" />
       <div class="row g-0">
-        <div class="col-2">
+        <div class="col-3">
           <img
             :src="movie.image"
             class="card-img"
             :alt="`${movie.title} poster`"
           />
         </div>
-        <div class="col-10">
+        <div class="col-9">
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
             <p>Director: {{ movie.crew["Director"] }}</p>
