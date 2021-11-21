@@ -14,12 +14,10 @@ const loadBooks = ({ commit }) => {
   return HttpService.get("books", (status, response) => {
     commit("ADD_API_REQUEST", {
       url: "GET /api/v1/books",
-      response: {
-        data: response,
-        status,
-      },
+      response,
+      status,
     });
-    commit("SET_BOOKS", response);
+    commit("SET_BOOKS", response.data || response);
     commit("STOP_LOADING");
   });
 };
@@ -37,7 +35,8 @@ const loadMovies = ({ commit }, movieTitle) => {
   return HttpService.get(`movies?title=${movieTitle}`, (status, response) => {
     commit("ADD_API_REQUEST", {
       url: `GET /api/v1/movies?title=${movieTitle}`,
-      response: { data: response, status },
+      response,
+      status,
     });
     commit("SET_MOVIES", response.data);
     commit("STOP_LOADING");
@@ -49,7 +48,8 @@ const loadRepos = ({ commit }) => {
   return HttpService.get(`github_repos`, (status, response) => {
     commit("ADD_API_REQUEST", {
       url: "GET /api/v1/github_repos",
-      response: { data: response, status },
+      response,
+      status,
     });
     commit("SET_REPOS", response.data);
     commit("SET_CATEGORIES", [
@@ -69,7 +69,8 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
     commit("STOP_LOADING");
     commit("ADD_API_REQUEST", {
       url: "POST /api/v1/login",
-      response: { data: response, status },
+      response,
+      status,
     });
 
     if (response.data.token) {
@@ -83,7 +84,8 @@ const removeFavoriteBook = ({ commit }, book) => {
   HttpService.delete(`/user_books/${book.id}`, (status, response) => {
     commit("ADD_API_REQUEST", {
       url: `DELETE /api/v1/user_books/${book.id}`,
-      response: { data: response, status },
+      response,
+      status,
     });
     commit("DESTROY_FAVORITE_BOOK", book);
   });
@@ -93,7 +95,8 @@ const setFavoriteBook = ({ commit }, book) => {
   HttpService.post("/user_books", { book_id: book.id }, (status, response) => {
     commit("ADD_API_REQUEST", {
       url: "POST /api/v1/user_books",
-      response: { data: response, status },
+      response,
+      status,
     });
     commit("CREATE_FAVORITE_BOOK", book);
   });

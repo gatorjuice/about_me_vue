@@ -31,7 +31,7 @@ describe("actions", () => {
   describe("loadBooks", () => {
     beforeEach(() => {
       httpService.get.mockImplementation((_, callback) =>
-        callback(200, [{ title: "Go Blue" }])
+        callback(200, { data: [{ title: "Go Blue" }] })
       );
       actions.loadBooks({ commit });
     });
@@ -41,8 +41,9 @@ describe("actions", () => {
     });
     test("loadBooks calls commit with ADD_API_REQUEST", () => {
       expect(commit).toHaveBeenCalledWith("ADD_API_REQUEST", {
-        response: { data: [{ title: "Go Blue" }], status: 200 },
         url: "GET /api/v1/books",
+        response: { data: [{ title: "Go Blue" }] },
+        status: 200,
       });
     });
     test("loadBooks calls commit with SET_BOOKS", () => {

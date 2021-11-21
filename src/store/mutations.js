@@ -68,10 +68,8 @@ const ADD_API_REQUEST = (state, request) => {
     {
       id: uuidv4(),
       url: request.url,
-      response: {
-        body: request.response.data,
-        status: request.response.status,
-      },
+      status: request.status,
+      response: request.response,
     },
     ...state.apiVisualizer.apiRequests,
   ];

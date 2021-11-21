@@ -14,7 +14,7 @@
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          {{ request.url }} ...responded with {{ request.response.status }}
+          {{ request.url }} ...responded with {{ request.status }}
         </button>
       </h2>
       <div
@@ -24,13 +24,12 @@
         data-bs-parent="#apiRequests"
       >
         <div class="accordion-body">
-          <pre v-if="request.payload">{{
-            JSON.stringify(request.payload, undefined, 2)
-          }}</pre>
+          <pre v-if="request.payload">
+            {{ JSON.stringify(request.payload, undefined, 2) }}
+          </pre>
           <pre>
-              {{ JSON.stringify(request.response.body, undefined, 2) }}
-            </pre
-          >
+            {{ JSON.stringify(request.response, undefined, 2) }}
+          </pre>
         </div>
       </div>
     </div>
