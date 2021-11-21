@@ -1,6 +1,5 @@
 <template>
   <nav
-    @click="collapseNavbar"
     class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
     id="sideNav"
   >
@@ -23,7 +22,11 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <div
+      @click="collapseNavbar"
+      class="collapse navbar-collapse"
+      id="navbarResponsive"
+    >
       <ul class="navbar-nav">
         <li class="nav-item">
           <router-link to="/repo_tracker" class="nav-link"
