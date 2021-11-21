@@ -17,7 +17,7 @@ const loadBooks = ({ commit }) => {
       response,
       status,
     });
-    commit("SET_BOOKS", response.data || response);
+    commit("SET_BOOKS", response.data);
     commit("STOP_LOADING");
   });
 };
