@@ -5,19 +5,19 @@
       :data-bs-target="`#${modalId}`"
       class="card mb-3"
     >
+      <MovieSearchModal :movie="movie" :modal-id="modalId" />
       <div class="row g-0">
-        <div class="col-md-2">
+        <div class="col-2">
           <img
             :src="movie.image"
             class="card-img"
             :alt="`${movie.title} poster`"
           />
         </div>
-        <div class="col-md-10">
+        <div class="col-10">
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
             <p>Director: {{ movie.crew["Director"] }}</p>
-            <MovieSearchModal :movie="movie" :modal-id="modalId" />
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default {
   max-width: 540px;
 }
 img {
-  max-width: 92px;
-  max-height: 139px;
+  max-width: 99px;
+  max-height: 150px;
 }
 </style>
