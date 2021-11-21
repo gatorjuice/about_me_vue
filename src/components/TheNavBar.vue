@@ -1,5 +1,6 @@
 <template>
   <nav
+    @click="collapseNavbar"
     class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
     id="sideNav"
   >
@@ -22,11 +23,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div
-      @click="collapseNavbar"
-      class="collapse navbar-collapse"
-      id="navbarResponsive"
-    >
+    <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav">
         <li class="nav-item">
           <router-link to="/repo_tracker" class="nav-link"
@@ -52,12 +49,11 @@
   </nav>
 </template>
 <script>
-import { Collapse } from "bootstrap";
 export default {
   name: "TheNavBar",
   methods: {
     collapseNavbar() {
-      new Collapse(document.getElementById("navbarResponsive"));
+      document.getElementById("navbarResponsive").classList.remove("show");
     },
   },
 };
