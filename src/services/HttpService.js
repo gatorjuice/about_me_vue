@@ -37,17 +37,18 @@ class HttpService {
   }
 
   handleError = (error) => {
-    console.log(error);
-    switch (error.response.status) {
-      case 401:
-        this.redirectTo(document, "/login");
-        break;
-      case 404:
-        this.redirectTo(document, "/");
-        break;
-      default:
-        this.redirectTo(document, "/");
-        break;
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          this.redirectTo(document, "/login");
+          break;
+        case 404:
+          this.redirectTo(document, "/");
+          break;
+        default:
+          this.redirectTo(document, "/");
+          break;
+      }
     }
     return Promise.reject(error);
   };

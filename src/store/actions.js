@@ -19,6 +19,8 @@ const loadBooks = ({ commit }) => {
     });
     commit("SET_BOOKS", response.data);
     commit("STOP_LOADING");
+  }).catch(() => {
+    commit("STOP_LOADING");
   });
 };
 
@@ -40,6 +42,8 @@ const loadMovies = ({ commit }, movieTitle) => {
     });
     commit("SET_MOVIES", response.data);
     commit("STOP_LOADING");
+  }).catch(() => {
+    commit("STOP_LOADING");
   });
 };
 
@@ -60,6 +64,8 @@ const loadRepos = ({ commit }) => {
       ),
     ]);
     commit("STOP_LOADING");
+  }).catch(() => {
+    commit("STOP_LOADING");
   });
 };
 
@@ -77,6 +83,8 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
       commit("SET_TOKEN", response.data.token);
       document.location = redirectTo;
     }
+  }).catch(() => {
+    commit("STOP_LOADING");
   });
 };
 
@@ -99,6 +107,8 @@ const setFavoriteBook = ({ commit }, book) => {
       status,
     });
     commit("CREATE_FAVORITE_BOOK", book);
+  }).catch(() => {
+    commit("STOP_LOADING");
   });
 };
 

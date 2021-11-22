@@ -1,8 +1,5 @@
 <template>
-  <form
-    class="row g-3"
-    @submit.prevent="$store.dispatch('loadMovies', form.movieTitle)"
-  >
+  <form class="row g-3" @submit.prevent="processForm">
     <div class="col-auto">
       <label for="movieTitle" class="visually-hidden">Movie Title</label>
       <div class="input-group mb-3">
@@ -39,7 +36,17 @@ import SubmitButton from "@/components/SubmitButton.vue";
 
 export default {
   name: "MovieSearch",
-  components: { MovieSearchCard, SubmitButton },
+  components: {
+    MovieSearchCard,
+    SubmitButton,
+  },
+  methods: {
+    processForm() {
+      this.$store.dispatch("clearMovies");
+      this.$store.dispatch("loadMovies", this.form.movieTitle);
+      this.form.movieTitle = "";
+    },
+  },
   data() {
     return { form: { movieTitle: "" } };
   },
