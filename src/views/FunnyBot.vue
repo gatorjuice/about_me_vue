@@ -66,11 +66,11 @@
                   id="inputPassword"
                   aria-describedby="message"
                   :placeholder="
-                    lastMessageFromFunnyBot
+                    isLastMessageFromFunnyBot
                       ? 'Send message to Funny Bot'
                       : 'Funny Bot is thinking'
                   "
-                  :disabled="!lastMessageFromFunnyBot"
+                  :disabled="!isLastMessageFromFunnyBot"
                 />
               </div>
             </div>
@@ -124,7 +124,7 @@ export default {
     messages() {
       return this.$store.state.funnyBot.messages;
     },
-    lastMessageFromFunnyBot() {
+    isLastMessageFromFunnyBot() {
       return this.messages[this.messages.length - 1].created_by_funny_bot;
     },
   },
