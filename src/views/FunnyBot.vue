@@ -29,7 +29,7 @@
             <ul class="m-b-0">
               <li
                 class="clearfix"
-                v-for="message in this.$store.state.funnyBot.messages"
+                v-for="message in messages"
                 :key="message.id"
               >
                 <div class="message-data text-right">
@@ -65,7 +65,12 @@
                   class="form-control"
                   id="inputPassword"
                   aria-describedby="message"
-                  placeholder="Send message to Funny Bot"
+                  :placeholder="
+                    lastMessageFromFunnyBot
+                      ? 'Send message to Funny Bot'
+                      : 'Funny Bot is thinking'
+                  "
+                  :disabled="!lastMessageFromFunnyBot"
                 />
               </div>
             </div>
@@ -115,6 +120,14 @@ export default {
       }
     };
   },
+  computed: {
+    messages() {
+      return this.$store.state.funnyBot.messages;
+    },
+    lastMessageFromFunnyBot() {
+      return this.messages[this.messages.length - 1].created_by_funny_bot;
+    },
+  },
   methods: {
     subscribe() {
       const msg = {
@@ -132,16 +145,18 @@ export default {
       this.connection.send(JSON.stringify(msg));
     },
     processForm() {
-      const msg = {
-        command: "message",
-        identifier: JSON.stringify({ channel: CHANNEL }),
-        data: JSON.stringify({
-          action: "post_message",
-          message: this.form.message,
-        }),
-      };
-      this.connection.send(JSON.stringify(msg));
-      this.form.message = "";
+      if (this.form.message) {
+        const msg = {
+          command: "message",
+          identifier: JSON.stringify({ channel: CHANNEL }),
+          data: JSON.stringify({
+            action: "post_message",
+            message: this.form.message,
+          }),
+        };
+        this.connection.send(JSON.stringify(msg));
+        this.form.message = "";
+      }
     },
   },
 };
